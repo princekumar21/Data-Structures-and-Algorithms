@@ -7,7 +7,8 @@ public class mazepath {
         int m = 7;
         //System.out.println(mazePathGenric(0, 0, n - 1, m - 1, dir, dirS, Math.max(n, m)).size());
         String ans = "";
-        System.out.println(mazepath(0, 0, 2, 2, ans));
+        //System.out.println(mazepath(0, 0, 2, 2, ans));
+        System.out.println(mazepathMultipleJump(0, 0, 2, 2, ans));
 
     }
     public static int mazepath(int sr, int sc, int er, int ec,String ans){
@@ -33,6 +34,31 @@ public class mazepath {
         return count;
 
     }
+
+    public static int mazepathMultipleJump(int sr, int sc, int er, int ec, String ans){
+        if(sr == er && sc == ec){
+            System.out.println(ans);
+            return 1;
+        }
+        int count = 0;
+        
+        for(int jump = 1; sc + jump <= ec; jump++){
+            count += mazepathMultipleJump( sr, sc + jump, er, ec, ans + "h" + jump);
+        } 
+        for(int jump = 1; sc + jump <= ec && sr + jump <= er ; jump++){
+            count += mazepathMultipleJump( sr + jump, sc + jump, er, ec, ans + "d" + jump);
+        }
+        
+        for(int jump = 1; sr + jump <= er; jump++){
+            count += mazepathMultipleJump( sr + jump, sc , er, ec, ans + "v" + jump);
+        }
+
+        
+
+        return count;
+
+    }
+
     public static ArrayList<String> mazePathGenric(int sr, int sc, int er, int ec, int[][] dir, String[] dirS,
             int Rad) {
         if (sr == er && sc == ec) {
