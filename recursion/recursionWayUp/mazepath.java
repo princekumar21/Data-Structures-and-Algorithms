@@ -16,13 +16,19 @@ public class mazepath {
             return 1;
         }
         int count = 0;
-        if(sr + 1 <= er && sc + 1 <= ec){
-            
-        count += mazepath( sr, sc + 1, er, ec, ans + "h");
-        count += mazepath( sr + 1, sc + 1, er, ec, ans + "d");
-        count += mazepath( sr + 1, sc , er, ec, ans + "v");
-
+        
+        if(sc < ec){
+            count += mazepath( sr, sc + 1, er, ec, ans + "h");
+        } 
+        if(sr < er && sc < ec ){
+            count += mazepath( sr + 1, sc + 1, er, ec, ans + "d");
         }
+        
+        if(sr < er){
+            count += mazepath( sr + 1, sc , er, ec, ans + "v");
+        }
+
+        
 
         return count;
 
