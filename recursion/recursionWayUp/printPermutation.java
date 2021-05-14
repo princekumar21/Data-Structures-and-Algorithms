@@ -40,35 +40,11 @@ public class printPermutation {
 
 
     }
-    //permutation with repetation
+    //permutation with repetition
     public static int countprintpermutationNoRepetition(String str, String ans){
+        //first we will sort the string
 
-        if(str.length() == 0){
-            System.out.println(ans);
-            return 1;
-        }
-        int count = 0;
-
-        char cha = '$';
-        for(int i = 0; i < str.length(); i++){
-
-            
-            
-            if(str.charAt(i) != cha){
-
-                char ch = str.charAt(i);
-                String roq = str.substring(0, i) + str.substring(i + 1);
-                count += countprintpermutationNoRepetition(roq, ans + ch);
-
-
-            }
-
-            cha = str.charAt(i);
-            
-
-        }
-
-        return count;
+        
         
 
 
