@@ -1,7 +1,7 @@
 import java.util.*;
 public class printPermutation {
 
-    //permutation without repetition
+    //permutation with repetition
     public static void printpermutation(String str, String ans){
 
         if(str.length() == 0){
@@ -93,8 +93,8 @@ public class printPermutation {
         Scanner sc = new Scanner(System.in);
         String str = sc.next();
         //String ans = "";
-        //printpermutation(str, ans);
-        permutationNoRepetition(str);
+        printpermutation(str, "");
+        //permutationNoRepetition(str);
 
 
     }
