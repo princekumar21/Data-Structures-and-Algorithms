@@ -6,15 +6,18 @@ public class sort01{
         arr[p1] = temp;
 
     }
-    public static int[] sort01(int arr[]){
-        int p1 = -1;
+    public static int[] sort011(int[] arr){
+        int p = -1;
         int itr = 0;
 
-        if(arr[itr] == 0){
-            swap(arr, itr++, ++p1);
+        while(itr < arr.length){
+            
+            if(arr[itr] == 0){
+                swap(arr, itr, ++p);
+            }
+    
+            itr++;
         }
-
-        itr++;
 
         return arr;
 
@@ -26,9 +29,9 @@ public class sort01{
         for(int i = 0; i < arr.length; i++){
             arr[i] = sc.nextInt();
         }
-        int[] arr1 = sort01(arr);
-        for(int a : arr){
-            System.out.print(a);
+        int[] arr1 = sort011(arr);
+        for(int a : arr1){
+            System.out.print(a + " ");
         }
 
     }
