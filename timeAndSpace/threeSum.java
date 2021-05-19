@@ -1,5 +1,5 @@
 import java.util.Scanner;
-public class targetSumPair{
+public class threeSum{
     public static void swap(int[] arr, int i, int j){
         int temp = arr[i];
         arr[i] = arr[j];
@@ -32,7 +32,7 @@ public class targetSumPair{
         quickSort(arr, p  + 1, ei);
 
     }
-    public static void targetsumpair(int[] arr, int target){
+    public static void threesum(int[] arr, int target){
         quickSort(arr, 0, arr.length - 1);
 
         int i = 0, k = arr.length - 1;
@@ -50,8 +50,9 @@ public class targetSumPair{
                 i++;
             }
         }
-    }
 
+
+    }
     public static void main(String args[]){
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
@@ -60,9 +61,12 @@ public class targetSumPair{
             arr[i] = sc.nextInt();
         }
         int target = sc.nextInt();
-        targetsumpair(arr, target);
+        threesum(arr, target);
 
+        
+        
 
     }
-    
+
+
 }

@@ -22,7 +22,7 @@ public class quickSort{
     }
 
     public static void quicksort(int[] arr, int si, int ei){
-        if(si < ei){
+        if(si > ei){
             return;
         }
 
