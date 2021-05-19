@@ -6,7 +6,7 @@ public class partitionOverPivot {
         arr[j] = temp;
 
     }
-    public static void partitionoverpivot(int[] arr, int si, int ei, int data){
+    public static void partitionoverpivot(int[] arr, int pivot){
        
 
         int p = si - 1, itr = si;
@@ -28,7 +28,7 @@ public class partitionOverPivot {
             arr[i] = sc.nextInt();
         }
         
-        partitionoverpivot(arr, 0, arr.length - 1, 7);
+        partitionoverpivot(arr, 7);
         for(int a : arr){
             System.out.print(a + " ");
         }
