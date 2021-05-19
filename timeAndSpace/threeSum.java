@@ -35,17 +35,21 @@ public class threeSum{
     public static void threesum(int[] arr, int target){
         quickSort(arr, 0, arr.length - 1);
 
-        
+        int i = 1, j = i - 1, k = arr.length - 1;
+        int sum = target;
+
         while(i < k){
-            if(arr[i] + arr[k] == sum){
-                System.out.print(arr[i] + ","+ arr[k]);
+            if(arr[i] + arr[j] + arr[k] == sum){
+                System.out.print(arr[i] + "," + arr[j] + "," + arr[k]);
                 i++;
                 k--;
+                j++;
             }
             else if(arr[i] + arr[k]  > sum){
                 k--;
             }else {
                 i++;
+                j++;
             }
         }
 
