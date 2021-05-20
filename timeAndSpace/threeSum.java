@@ -58,24 +58,7 @@ public class threeSum{
     }
     public static void threesum(int[] arr, int target){
         
-        quickSort(arr, 0, arr.length - 1);
-
-        int i = 0, j = arr.length - 1;
-        ArrayList<int[]> ans = new ArrayList<>();
-
-        while(i < j){
-            if(arr[i] + arr[j] == tar){
-                ans.add(new int[] {arr[i], arr[j]});
-                i++;
-                j--;
-            }else if(arr[i] + arr[j] < tar){
-                i++;
-
-            }else{
-                j--;
-            }
-
-        }
+        
 
     }
     public static void main(String args[]){
