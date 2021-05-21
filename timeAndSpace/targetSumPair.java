@@ -32,25 +32,7 @@ public class targetSumPair{
         quickSort(arr, p  + 1, ei);
 
     }
-    public static void targetsumpair(int[] arr, int target){
-        quickSort(arr, 0, arr.length - 1);
-
-        int i = 0, k = arr.length - 1;
-        int sum = target;
-
-        while(i < k){
-            if(arr[i] + arr[k] == sum){
-                System.out.print(arr[i] + ","+ arr[k]);
-                i++;
-                k--;
-            }
-            else if(arr[i] + arr[k]  > sum){
-                k--;
-            }else {
-                i++;
-            }
-        }
-    }
+    
 
     public static void main(String args[]){
         Scanner sc = new Scanner(System.in);
