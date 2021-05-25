@@ -52,11 +52,46 @@ public class linkedlist{
     }
 
     private Node removeFirstNode(){
+        Node node = this.head;
+        if(this.size == 1){
+            this.head = this.tail = null;
+        }else{
+            this.head = this.head.next;
+            node.next = null;
+        }
+        this.size--;
+
+        return node;
+    }
+
+    public int removeFirst(){
+        if(this.size == 0){
+            return -1;
+        }
+
+        Node node = removeFirstNode();
+        return node.data;
+
+    }
+    private Node getFirstNode(){
+
+        return this.head;
+    }
+
+    public int getFirst(){
+        if(this.size == 0){
+            return -1;
+        }
+
+       Node node =  getFirstNode();
+       return node.data;
 
     }
 
-    public Node removeFirst(){
-        
+    public 
+
+    public getLast(){
+
     }
 
     public static void main(String args[]){
