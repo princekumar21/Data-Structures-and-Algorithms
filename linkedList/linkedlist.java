@@ -88,9 +88,16 @@ public class linkedlist{
 
     }
 
-    public 
+    private Node getLastNode(){
+        return this.tail;
+    }
 
-    public getLast(){
+    public int getLast(){
+        if(this.size == 0){
+            return -1;
+        }
+
+        return getLastNode().data;
 
     }
 
