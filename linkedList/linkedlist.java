@@ -1,3 +1,5 @@
+import java.util.LinkedList;
+
 public class linkedlist{
 
     public class  Node {
@@ -98,10 +100,34 @@ public class linkedlist{
         }
 
         return getLastNode().data;
+    }
+
+    private Node getNodeAt(int idx){
+        Node curr = this.head;
+        while(idx-- > 0){
+            curr = curr.next;
+
+        }
+
+    }
+
+    public int getAt(int idx){
+        if(idx < 0 && idx >= this.size){
+            return -1;
+        }
+        getNodeAt(idx);
+    }
+
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        
 
     }
 
     public static void main(String args[]){
+
+        LinkedList<Integer> ll = new LinkedList<>();
+        ll.
 
     }
 
