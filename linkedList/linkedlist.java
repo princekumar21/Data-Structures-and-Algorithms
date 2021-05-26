@@ -6,9 +6,9 @@ public class linkedlist{
         int data = 0;
         Node next = null;
 
-        // Node(int data){
-        //     this.data = data;
-        // }
+        Node(int data){
+            this.data = data;
+        }
     } 
 
     private Node head = null;
@@ -109,25 +109,59 @@ public class linkedlist{
 
         }
 
+        return curr;
+
     }
 
     public int getAt(int idx){
         if(idx < 0 && idx >= this.size){
             return -1;
         }
-        getNodeAt(idx);
+        Node node = getNodeAt(idx);
+        return node.data;
     }
 
+    @Override
     public String toString(){
         StringBuilder sb = new StringBuilder();
         
+        return sb.toString();
+    }
 
+    public void oddEven(){
+        Node even = new Node(-1);
+        Node ep = even;
+        
+        Node odd = new Node(-1);
+        Node op = odd;
+        
+        Node curr = head;
+        
+        while(curr != null){
+            if(curr.data % 2 != 0){
+                op.next = curr;
+                op = op.next;
+            }else{
+                ep.next = curr;
+                ep = ep.next;
+            }
+            
+            curr = curr.next;
+            
+        }
+        
+        op.next = even.next;
+        head = odd.next;
+        
+       
+        
+        
     }
 
     public static void main(String args[]){
 
-        LinkedList<Integer> ll = new LinkedList<>();
-        ll.
+       linkedlist ll = new linkedlist();
+       ll.addFirst("1");
 
     }
 
