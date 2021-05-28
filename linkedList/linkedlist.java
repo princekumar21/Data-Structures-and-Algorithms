@@ -128,35 +128,7 @@ public class linkedlist{
         return sb.toString();
     }
 
-    public void oddEven(){
-        Node even = new Node(-1);
-        Node ep = even;
-        
-        Node odd = new Node(-1);
-        Node op = odd;
-        
-        Node curr = head;
-        
-        while(curr != null){
-            if(curr.data % 2 != 0){
-                op.next = curr;
-                op = op.next;
-            }else{
-                ep.next = curr;
-                ep = ep.next;
-            }
-            
-            curr = curr.next;
-            
-        }
-        
-        op.next = even.next;
-        head = odd.next;
-        
-       
-        
-        
-    }
+    
 
     public static void main(String args[]){
 
