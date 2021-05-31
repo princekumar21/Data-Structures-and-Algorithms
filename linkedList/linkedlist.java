@@ -165,6 +165,7 @@ public class linkedlist{
         Node curr = head;
         Node forw = curr.next;
         Node prev = new Node(-1);
+        Node node = new Node();
         
     
 
