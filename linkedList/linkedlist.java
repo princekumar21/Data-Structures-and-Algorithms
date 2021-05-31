@@ -161,15 +161,7 @@ public class linkedlist{
         
         
     }
-    public  void reverseOfLinkedList(Node head){
-        Node curr = head;
-        Node forw = curr.next;
-        Node prev = new Node(-1);
-        
     
-
-
-    }
     public static void addLinkedList(Node l1, Node l2){
 
     }
