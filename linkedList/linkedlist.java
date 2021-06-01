@@ -40,15 +40,7 @@ public class linkedlist{
         addFirstNode(node);
     }
 
-    public void addLastNode(Node node){
-        if(this.size == 0){
-            this.head = this.tail = node;
-        }else{
-            tail.next = node;
-            this.tail = node;
-        }
-        this.size++;
-    }
+    
     
     public void addLast(int data){
         Node node = new Node();
