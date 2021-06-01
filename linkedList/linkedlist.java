@@ -128,6 +128,15 @@ public class linkedlist{
     @Override
     public String toString(){
         StringBuilder sb = new StringBuilder();
+        Node curr = head;
+        sb.append("[");
+        while(curr != null){ 
+            sb.append(curr.data);
+            curr = curr.next;
+        }
+        if(curr != null){
+            sb.append("]");
+        }
         
         return sb.toString();
     }
