@@ -125,6 +125,22 @@ public class linkedlist{
         return node.data;
     }
 
+    public int mid(){
+        if(head == null){
+            return -1;
+        }
+          Node fast = head;
+          Node slow = head;
+          //fast.next != null doubt about this
+          while(fast.next != null && fast.next.next != null){
+              fast = fast.next.next;
+              slow = slow.next;
+              
+          }
+          
+          return slow.data;
+        }
+
     @Override
     public String toString(){
         StringBuilder sb = new StringBuilder();
@@ -132,11 +148,14 @@ public class linkedlist{
         sb.append("[");
         while(curr != null){ 
             sb.append(curr.data);
+            if(curr != null){
+                sb.append(",");
+            }
             curr = curr.next;
         }
-        if(curr != null){
-            sb.append("]");
-        }
+        
+        sb.append("]");
+       
         
         return sb.toString();
     }
