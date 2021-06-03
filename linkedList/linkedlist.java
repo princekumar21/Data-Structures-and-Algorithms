@@ -206,7 +206,7 @@ public class linkedlist{
     public static void main(String args[]){
 
        linkedlist ll = new linkedlist();
-       ll.addFirst("1");
+       ll.addFirst(1);
 
     }
 
