@@ -43,5 +43,33 @@ public class questions {
         return head;
         
     }
+
+    leetcode 83
+    class Solution {
+        public ListNode deleteDuplicates(ListNode head) {
+            if(head == null || head.next == null){
+              return head;
+          }
+          
+         ListNode temp = new ListNode();
+          temp.val = -1000;
+          ListNode dumy = temp;
+          ListNode curr = head;
+          
+         while(curr != null){
+            if(dumy.val != curr.val){
+              dumy.next = curr;
+              dumy = dumy.next;
+              
+            }
+            curr = curr.next;
+         }
+         dumy.next = null;
+         return temp.next;
+          
+        }
+            
+        
+    }
     
 }
