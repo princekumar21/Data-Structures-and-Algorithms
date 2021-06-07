@@ -4,23 +4,45 @@ public class stack {
     private int size;
     private int maxsize;
 
-    private void initialize(int data){
-        this.arr[data];
-        
+    private void initialize(int len){
+        this.arr = new int[len];
+        this.tos = -1;
+        this.size = 0;
+        this.maxsize = len;
 
+
+    }
+
+    private void stackIsOverFlowException() throws Exception{
+        if(this.size == this.maxsize){
+            throw new Exception("stackIsoverFlowException : -1");
+        }
     }
 
     stack(){
         initialize(5);
     }
 
-    stack(int data){
-        initialize(data);
+    stack(int size){
+        initialize(size);
     }
 
+    public int size(){
+        
+        return this.size;
 
-    public void push(int data){
+    }
+    public boolean isEmpty(){
+        return this.size == 0;
+    }
 
+    private void push_(int data){
+        this.arr[++this.tos] = data;
+        this.size++;
+    }
 
+    public void push(int data) throws Exception{
+        stackIsOverFlowException();
+        push_(data);
     }
 }
