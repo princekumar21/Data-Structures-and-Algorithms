@@ -12,6 +12,12 @@ public class stack {
 
 
     }
+    private void stackIsEmptyException() throws Exception{
+        if(this.size == 0){
+            throw new Exception("stackISEmptyException : -1");
+        }
+
+    }
 
     private void stackIsOverFlowException() throws Exception{
         if(this.size == this.maxsize){
@@ -28,9 +34,7 @@ public class stack {
     }
 
     public int size(){
-        
         return this.size;
-
     }
     public boolean isEmpty(){
         return this.size == 0;
@@ -44,5 +48,16 @@ public class stack {
     public void push(int data) throws Exception{
         stackIsOverFlowException();
         push_(data);
+    }
+
+    public int top() throws Exception{
+        stackIsEmptyException();
+        return this.tos;
+    }
+
+    public void pop() throws Exception{
+        stackIsEmptyException();
+        this.arr[tos] = 0;
+        this.size--;
     }
 }
