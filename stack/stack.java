@@ -36,8 +36,16 @@ public class stack {
     @Override
     public String toString(){
         StringBuilder sb = new StringBuilder();
-        
-        return toString();
+        sb.append("[");
+        for(int i = this.size - 1; i >= 0; i--){
+            sb.append(arr[i]);
+            if(i != 0){
+                sb.append(",");
+            }
+
+        }
+        sb.append("]");
+        return sb.toString();
     }
 
     public int size(){
@@ -59,12 +67,12 @@ public class stack {
 
     public int top() throws Exception{
         stackIsEmptyException();
-        return this.tos;
+        return arr[this.tos];
     }
 
     public void pop() throws Exception{
         stackIsEmptyException();
-        this.arr[tos] = 0;
+        this.arr[this.tos--] = 0;
         this.size--;
     }
 }

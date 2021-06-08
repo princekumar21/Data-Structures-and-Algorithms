@@ -20,11 +20,33 @@ public class queue {
         initilize(size);
     }
 
+    @Override
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("[");
+        for(int i = 0; i < this.size; i++){
+            int idx = (this.front  + i) % this.maxsize;
+            sb.append(this.arr[idx]);
+            if(i != this.size - 1){
+                sb.append(",");
+            }
+        }
+        sb.append("]");
+
+        return sb.toString();
+
+    }
     private void queueIsEmptyException() throws Exception{
-        if(this.size == this.maxsize){
+        if(this.size == 0){
             throw new Exception("queueIsEmptyException : -1");
         }
 
+    }
+
+    private void queueIsoverfullException() throws Exception{
+        if(this.size == this.maxsize){
+            throw new Exception("queueIsoverfullException : -1");
+        }
     }
 
     public int size(){
@@ -42,13 +64,29 @@ public class queue {
     }
 
     public void add(int data) throws Exception{
-        queueIsEmptyException();
+        queueIsoverfullException();
         add_(data);  
             
     }
 
-    public int peek(){
-        return this.arr[front];
+    public int peek() throws Exception{
+        queueIsEmptyException();
+        return this.arr[this.front];
+    }
+
+    private int remove_(){
+        int rv = this.arr[this.front];
+        this.arr[this.front] = 0;
+        this.front = (this.front + 1) % maxsize;
+        this.size--;
+
+        return rv;
+
+    }
+
+    public int remove() throws Exception{
+        queueIsEmptyException();
+        return remove_();
     }
 
     
