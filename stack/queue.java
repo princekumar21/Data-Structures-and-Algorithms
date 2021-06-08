@@ -11,13 +11,20 @@ public class queue {
         this.maxsize = len;
         this.front = this.back = 0;
     }
-    
+
     queue(){
         initilize(5);
     }
 
     queue(int size){
         initilize(size);
+    }
+
+    private void queueIsEmptyException() throws Exception{
+        if(this.size == this.maxsize){
+            throw new Exception("queueIsEmptyException : -1");
+        }
+
     }
 
     public int size(){
@@ -28,8 +35,20 @@ public class queue {
         return this.size == 0;
     }
 
-    public void add(){
-        
+    private void add_(int data){
+        this.arr[this.back] = data; 
+        this.back = (this.back + 1) % this.maxsize;
+        this.size++; 
+    }
+
+    public void add(int data) throws Exception{
+        queueIsEmptyException();
+        add_(data);  
+            
+    }
+
+    public int peek(){
+        return this.arr[front];
     }
 
     
