@@ -33,6 +33,13 @@ public class stack {
         initialize(size);
     }
 
+    @Override
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        
+        return toString();
+    }
+
     public int size(){
         return this.size;
     }
