@@ -47,6 +47,10 @@ public class binaryTree{
         ans.add(root.data);
     }
 
+    public static void size(){
+        
+    }
+
     
 
 }
