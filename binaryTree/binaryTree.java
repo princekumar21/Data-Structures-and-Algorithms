@@ -71,7 +71,16 @@ public class binaryTree{
     }
 
     public static int max(Node node){
+    //     if(node == null){
+    //         return -(int) 1e9;
+    //     }
         
+    //    int leftMax = max(node.left);
+    //    int rightMax = max(node.right);
+
+    //    return Math.max(node.data, Math.max(leftMax, rightMax));
+
+       return node == null ? -(int) 1e9 : Math.max(node.data, Math.max(max(node.left), max(node.right)));
 
     }
 
