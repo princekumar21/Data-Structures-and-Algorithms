@@ -47,8 +47,32 @@ public class binaryTree{
         ans.add(root.data);
     }
 
-    public static void size(){
+    public static int size(Node node){
+        if(node == null){
+            return 0;
+        }
         
+        int leftSize = size(node.left);
+        int rightSize = size(node.right);
+
+        return leftSize + rightSize + 1;
+        // return node == null ? 0 : size(node.left) + size(node.right) + 1;
+    }
+
+    public static int sum(Node node){
+        if(node == null) return 0;
+
+        int leftSum = sum(node.left);
+        int rightSum = sum(node.right);
+        
+        return leftSum + rightSum + node.data;
+
+        // return node == null ? 0 : sum(node.left) + sum(node.right) + node.data;
+    }
+
+    public static int max(Node node){
+        
+
     }
 
     
