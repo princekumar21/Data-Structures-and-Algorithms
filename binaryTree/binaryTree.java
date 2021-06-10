@@ -96,6 +96,34 @@ public class binaryTree{
         
     }
 
+    public static int countLeaves(Node node){
+        if(node == null){
+            return 0;
+        }
+
+        if(node.right == null && node.left == null){
+            return 1;
+        }
+
+        
+      return countLeaves(node.left) + countLeaves(node.right);
+    }
+
+    public static void exactlyOneChild(Node node, ArrayList<Integer> ans){
+        if(node == null || (node.left == null && node.right == null)){
+            return;
+        }
+
+        if(node.left == null || node.right == null){
+                ans.add(node.data);
+        }
+
+        exactlyOneChild(node.left, ans);
+        exactlyOneChild(node.right, ans);
+
+
+    }
+
     
 
 }
