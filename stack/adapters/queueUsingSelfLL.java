@@ -23,7 +23,11 @@ public class queueUsingSelfLL {
         Node node = new Node(data);
         if (this.size == 0) {
             this.head = this.tail = node;
-
+        } else {
+            this.tail.next = node;
+            this.tail = node;
+        }
+        this.size++;
         
     }
 
