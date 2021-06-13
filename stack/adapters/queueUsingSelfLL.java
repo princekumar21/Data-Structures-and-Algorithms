@@ -24,11 +24,7 @@ public class queueUsingSelfLL {
         if (this.size == 0) {
             this.head = this.tail = node;
 
-        } else {
-            this.tail.next = node;
-            this.tail = node;
-        }
-        this.size++;
+        
     }
 
     private int removeFirst() {
