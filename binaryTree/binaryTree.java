@@ -96,10 +96,7 @@ public class binaryTree{
         
     }
 
-    public static int countLeaves(Node node){
-        if(node == null){
-            return 0;
-        }
+    
 
         if(node.right == null && node.left == null){
             return 1;
