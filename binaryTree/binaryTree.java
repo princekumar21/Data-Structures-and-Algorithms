@@ -166,46 +166,76 @@ public class binaryTree {
         if (node == null) {
             return null;
         }
-        
+
         if (node.data == data) {
             ArrayList<Node> ans = new ArrayList<>();
             ans.add(node);
             return ans;
-            
+
         }
         ArrayList<Node> left = nodeToRootPath02_(node.left, data);
-        if(left != null){
+        if (left != null) {
             left.add(node);
             return left;
         }
         ArrayList<Node> right = nodeToRootPath02_(node.right, data);
-        if(right != null){
+        if (right != null) {
             right.add(node);
             return right;
         }
-        
+
         return null;
     }
+
     public static ArrayList<Node> nodeToRootPath02(Node node, int data) {
-        ArrayList<Node> ans = nodeToRootPath02_(node, data)
-       return  ans != null ? ans : new ArrayList<>(); 
+        ArrayList<Node> ans = nodeToRootPath02_(node, data);
+        return ans != null ? ans : new ArrayList<>();
 
     }
-    
+
     public static void kLevelsDown(Node node, int k, ArrayList<Integer> ans) {
 
-        if(node == null || k  <0){
-            return ;
+        if (node == null || k < 0) {
+            return;
         }
 
-        if(k == 0){
+        if (k == 0) {
             ans.add(node.data);
             return;
         }
-        
+
         kLevelsDown(node.left, k - 1, ans);
         kLevelsDown(node.right, k - 1, ans);
     }
 
-    
+    public static void kLevelsDown(Node node, int k, Node block, ArrayList<Integer> ans) {
+
+        if (node == null || k < 0 || node == block) {
+            return;
+        }
+
+        if (k == 0) {
+            ans.add(node.data);
+            return;
+        }
+
+        kLevelsDown(node.left, k - 1, block, ans);
+        kLevelsDown(node.right, k - 1, block, ans);
+    }
+
+    public static ArrayList<Integer> kAway(Node node, int data, int k) {
+        ArrayList<Node> ans = new ArrayList<>();
+        nodeToRootPath(node, data, ans);
+
+        ArrayList<Integer> res = new ArrayList<>();
+        Node block = null;
+        for (int i = 0; i < ans.size(); i++) {
+            kLevelsDown(ans.get(i), k - i, block, res);
+            block = ans.get(i);
+
+        }
+
+        return res;
+
+    }
 }
