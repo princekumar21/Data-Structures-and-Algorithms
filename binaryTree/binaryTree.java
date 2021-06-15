@@ -137,19 +137,42 @@ public class binaryTree {
         return findData(node.left, data) || findData(node.right, data);
     }
 
-    public static boolean nodeToRootPath (Node node, int data, ArrayList<Integer> ans){
-        if(node == null) {
-            return 
+    public static boolean nodeToRootPath(Node node, int data, ArrayList<Node> ans) {
+        if (node == null) {
+            return false;
+        }
+        if(node.data == data){
+            ans.add(node);
+            return true;
         }
 
-        
+        boolean res =  nodeToRootPath(node.left, data, ans) || nodeToRootPath(node.right, data, ans); 
+        if(res) {
+            ans.add(node);
+            return true;
+        }
 
+        return true;
 
 
     }
 
-    public static void printKlevelsDown(Node root, int k, ArrayLis<Integer> ans) {
+    public static void KlevelsDown(Node root, int k, ArrayLis<Integer> ans) {
 
     }
 
+    public static void kDown(Node node, int k, ArrayList<Integer> ans) {
+        if (node == null || k < 0) {
+            return;
+        }
+
+        if (k == 0) {
+            ans.add(node.data);
+            return;
+        }
+
+        kDown(node.left, k - 1, ans);
+        kDown(node.right, k - 1, ans);
+
+    }
 }
