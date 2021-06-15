@@ -141,38 +141,71 @@ public class binaryTree {
         if (node == null) {
             return false;
         }
-        if(node.data == data){
+        if (node.data == data) {
             ans.add(node);
             return true;
         }
 
-        boolean res =  nodeToRootPath(node.left, data, ans) || nodeToRootPath(node.right, data, ans); 
-        if(res) {
+        boolean res = nodeToRootPath(node.left, data, ans) || nodeToRootPath(node.right, data, ans);
+        if (res) {
             ans.add(node);
             return true;
         }
 
         return true;
 
-
     }
 
-    public static void KlevelsDown(Node root, int k, ArrayLis<Integer> ans) {
-
+    public static ArrayList<Node> nodeToRootPath(Node root, int data) {
+        ArrayList<Node> ans = new ArrayList<>();
+        nodeToRootPath(root, data, ans);
+        return ans;
     }
 
-    public static void kDown(Node node, int k, ArrayList<Integer> ans) {
-        if (node == null || k < 0) {
-            return;
+    public static ArrayList<Node> nodeToRootPath02_(Node node, int data) {
+        if (node == null) {
+            return null;
+        }
+        
+        if (node.data == data) {
+            ArrayList<Node> ans = new ArrayList<>();
+            ans.add(node);
+            return ans;
+            
+        }
+        ArrayList<Node> left = nodeToRootPath02_(node.left, data);
+        if(left != null){
+            left.add(node);
+            return left;
+        }
+        ArrayList<Node> right = nodeToRootPath02_(node.right, data);
+        if(right != null){
+            right.add(node);
+            return right;
+        }
+        
+        return null;
+    }
+    public static ArrayList<Node> nodeToRootPath02(Node node, int data) {
+        ArrayList<Node> ans = nodeToRootPath02_(node, data)
+       return  ans != null ? ans : new ArrayList<>(); 
+
+    }
+    
+    public static void kLevelsDown(Node node, int k, ArrayList<Integer> ans) {
+
+        if(node == null || k  <0){
+            return ;
         }
 
-        if (k == 0) {
+        if(k == 0){
             ans.add(node.data);
             return;
         }
-
-        kDown(node.left, k - 1, ans);
-        kDown(node.right, k - 1, ans);
-
+        
+        kLevelsDown(node.left, k - 1, ans);
+        kLevelsDown(node.right, k - 1, ans);
     }
+
+    
 }
