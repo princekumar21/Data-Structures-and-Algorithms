@@ -148,11 +148,11 @@ public class binaryTree {
 
         boolean res = nodeToRootPath(node.left, data, ans) || nodeToRootPath(node.right, data, ans);
         if (res) {
-            ans.add(node);
+            ans.add(node); 
             return true;
         }
 
-        return true;
+        return false;
 
     }
 
@@ -238,4 +238,63 @@ public class binaryTree {
         return res;
 
     }
+    public static int kaway2(Node node, int data, int k, ArrayList<Integer> ans) {
+        if (node == null)
+            return -1;
+
+        if (node.data == data) {
+            kLevelsDown(node, k, null, ans);
+            return 1;
+        }
+
+        int ld = kaway2(node.left, data, k, ans);
+        if (ld != -1) {
+            kLevelsDown(node, k - ld, node.left, ans);
+            return ld + 1;
+        }
+
+        int rd = kaway2(node.right, data, k, ans);
+        if (rd != -1) {
+            kLevelsDown(node, k - rd, node.right, ans);
+            return rd + 1;
+        }
+
+        return -1;
+    }
+
+    public static class isBSTPair {
+        boolean isBST = true;
+        int maxEle = -(int) 1e9;
+        int minEle = (int) 1e9;
+    }
+
+    public static isBSTPair isBST_02(Node node) {
+        if (node == null)
+            return new isBSTPair();
+
+        isBSTPair left = isBST_02(node.left);
+        if (!left.isBST)
+            return left;
+
+        isBSTPair right = isBST_02(node.right);
+        if (!right.isBST)
+            return right;
+
+        isBSTPair self = new isBSTPair();
+        self.isBST = false;
+
+        if (left.maxEle < node.data && right.minEle > node.data) {
+            self.maxEle = Math.max(right.maxEle, node.data);
+            self.minEle = Math.min(left.minEle, node.data);
+            self.isBST = true;
+        }
+
+        return self;
+    }
+
+    public static int heightH(Node node){
+        return node != null ? Math.max(heightH(node.left), heightH(node.right)) + 1 : -1;
+
+    }
+    
 }
