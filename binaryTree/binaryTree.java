@@ -296,5 +296,25 @@ public class binaryTree {
         return node != null ? Math.max(heightH(node.left), heightH(node.right)) + 1 : -1;
 
     }
-    
+    public static boolean isBalance(Node node){
+        if(node == null){
+            return true;
+        }
+
+        boolean left = isBalance(node.left);
+        boolean right = isBalance(node.right);
+
+       int lheight = heightH(node.left);
+       int rheight = heightH(node.right);
+
+       int diff = (Math.abs(lheight - rheight));
+       if(diff > 1){
+           return false;
+       }
+
+       return true;
+
+
+
+    }
 }
