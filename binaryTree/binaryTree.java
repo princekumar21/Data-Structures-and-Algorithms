@@ -262,7 +262,11 @@ public class binaryTree {
         return -1;
     }
 
-    
+    public static class isBSTPair {
+        boolean isBST = true;
+        int maxEle = -(int) 1e9;
+        int minEle = (int) 1e9;
+    }   
 
     public static isBSTPair isBST_02(Node node) {
         if (node == null)
