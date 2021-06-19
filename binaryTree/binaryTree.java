@@ -111,19 +111,7 @@ public class binaryTree {
         return countLeaves(node.left) + countLeaves(node.right);
     }
 
-    public static void exactlyOneChild(Node node, ArrayList<Integer> ans) {
-        if (node == null || (node.left == null && node.right == null)) {
-            return;
-        }
-
-        if (node.left == null || node.right == null) {
-            ans.add(node.data);
-        }
-
-        exactlyOneChild(node.left, ans);
-        exactlyOneChild(node.right, ans);
-
-    }
+    
 
     public static boolean findData(Node node, int data) {
         if (node == null) {
