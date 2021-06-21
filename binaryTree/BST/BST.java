@@ -1,4 +1,7 @@
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.*;
+
 public class BST {
     public static class Node {
         int data;
@@ -71,27 +74,64 @@ public class BST {
         return false;
     }
 
-    public static int sum(Node node){
+    public static int sum(Node node) {
         return node == null ? 0 : sum(node.left) + sum(node.right) + node.data;
     }
 
-    public static ArrayList<Node> nodeToRootPath(Node node, int data){
+    public static ArrayList<Node> nodeToRootPath(Node node, int data) {
         ArrayList<Node> path = new ArrayList<>();
-
-        while(node != null){
-            if(node.data == data){
-                path.add(node);
+        boolean flag = false;
+        while (node != null) {
+            path.add(node);
+            if (node.data == data) {
+                flag = true;
                 break;
-            }else if(node.data < data){
-                path.add(node);
+            } else if (node.data < data) {
                 node = node.right;
-            }else{
-                path.add(node);
+            } else {
                 node = node.left;
             }
         }
+        if (!flag)
+            path.clear();
 
+        Collections.reverse(path);
         return path;
+
+    }
+    //Lowest Common Ancestor
+    public static int LCA(Node node, int d1, int d2){
+        int lca = -1;
+        while(node != null){
+            if(node.data < d1 && node.data < d2){
+                node = node.right;
+            }else if(node.data > d1 && node.data > d2){
+                node = node.left;
+            }else{
+                lca = node.data;
+                break;
+            }
+        }
+
+        return lca;
+
+    }
+
+    public static void printInRange(Node node, int lr, int rr){
+        if(node == null) {
+            return;
+        }
+        
+        if(node.data < lr && node.data < rr){
+            printInRange(node.left, lr, rr);
+
+        }else if(node.data > lr && node.data > rr){
+            printInRange(node.right, lr, rr);
+        }else{
+            printInRange(node.left, lr, rr);
+            System.out.println(node.data);
+            printInRange(node.right, lr, rr);
+        }
 
     }
 }
