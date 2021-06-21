@@ -1,5 +1,7 @@
 public class BST {
     public static class Node {
-        public static 
+        public static void size(){
+            
+        }
     }
 }
