@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 public class BST {
     public static class Node {
         int data;
@@ -75,6 +76,22 @@ public class BST {
     }
 
     public static ArrayList<Node> nodeToRootPath(Node node, int data){
-        
+        ArrayList<Node> path = new ArrayList<>();
+
+        while(node != null){
+            if(node.data == data){
+                path.add(node);
+                break;
+            }else if(node.data < data){
+                path.add(node);
+                node = node.right;
+            }else{
+                path.add(node);
+                node = node.left;
+            }
+        }
+
+        return path;
+
     }
 }
