@@ -173,17 +173,16 @@ public class BST {
         }else if(node.data > data){
             node.left = removeNode(node.left, data);
         }else {
-            if(node.left == null && node.right == null){
-                return null;
-
-            }else if(node.left == null){
-                return node.right;
-            }else if(node.right == null){
-                return node.left;
+            if(node.left == null || node.right == null){
+               return  node.left != null ? node.left : node.right;
             }else {
-                
+                int minEle = min(node.right);
+                node.data = minEle;
+
+                node.right = removeNode(node.right, minEle);
             }
         }
+        return node;
 
     }
 }
