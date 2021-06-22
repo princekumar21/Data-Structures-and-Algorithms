@@ -135,24 +135,6 @@ public class BST {
 
     }
 
-    public void modify(Node root, int[] arr) {
-        if (root == null)
-            return;
-
-        modify(root.right, arr);
-
-        root.data += arr[0];
-        arr[0] = root.data;
-
-        modify(root.left, arr);
-    }
-
-    public Node modify(Node root) {
-        int[] arr = new int[1];
-        modify(root, arr);
-        return root;
-    }
-
     public static Node addData(Node node, int data){
         if(node == null){
             return new Node(data);
