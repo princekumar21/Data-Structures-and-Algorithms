@@ -134,38 +134,6 @@ public class BST {
         }
 
     }
-    public static Node addData(Node node, int data) {
-        if (node == null)
-            return new Node(data);
-
-        if (node.data < data)
-            node.right = addData(node.right, data);
-        else if (node.data > data)
-            node.left = addData(node.left, data);
-
-        return node;
-    }
-
-    public static Node removeNode(Node node, int data) {
-        if (node == null)
-            return null;
-
-        if (node.data < data)
-            node.right = removeNode(node.right, data);
-        else if (node.data > data)
-            node.left = removeNode(node.left, data);
-        else {
-            if (node.left == null || node.right == null)
-                return node.left != null ? node.left : node.right;
-
-            int minEle = min(node.right);
-            node.data = minEle;
-
-            node.right = removeNode(node.right, minEle);
-        }
-
-        return node;
-    }
 
     public void modify(Node root, int[] arr) {
         if (root == null)
@@ -183,5 +151,39 @@ public class BST {
         int[] arr = new int[1];
         modify(root, arr);
         return root;
+    }
+
+    public static Node addData(Node node, int data){
+        if(node == null){
+            return new Node(data);
+        }
+        
+        
+        if(node.data < data){
+            node.right = addData(node.right, data);
+        }else if(node.data > data){
+            node.left = addData(node.left, data);
+        }
+        return node;
+    }
+
+    public static Node removeNode(Node node, int data){
+        if(node.data < data){
+           node.right = removeNode(node.right, data);
+        }else if(node.data > data){
+            node.left = removeNode(node.left, data);
+        }else {
+            if(node.left == null && node.right == null){
+                return null;
+
+            }else if(node.left == null){
+                return node.right;
+            }else if(node.right == null){
+                return node.left;
+            }else {
+                
+            }
+        }
+
     }
 }
