@@ -99,15 +99,16 @@ public class BST {
         return path;
 
     }
-    //Lowest Common Ancestor
-    public static int LCA(Node node, int d1, int d2){
+
+    // Lowest Common Ancestor
+    public static int LCA(Node node, int d1, int d2) {
         int lca = -1;
-        while(node != null){
-            if(node.data < d1 && node.data < d2){
+        while (node != null) {
+            if (node.data < d1 && node.data < d2) {
                 node = node.right;
-            }else if(node.data > d1 && node.data > d2){
+            } else if (node.data > d1 && node.data > d2) {
                 node = node.left;
-            }else{
+            } else {
                 lca = node.data;
                 break;
             }
@@ -117,17 +118,17 @@ public class BST {
 
     }
 
-    public static void printInRange(Node node, int lr, int rr){
-        if(node == null) {
+    public static void printInRange(Node node, int lr, int rr) {
+        if (node == null) {
             return;
         }
-        
-        if(node.data < lr && node.data < rr){
+
+        if (node.data < lr && node.data < rr) {
             printInRange(node.left, lr, rr);
 
-        }else if(node.data > lr && node.data > rr){
+        } else if (node.data > lr && node.data > rr) {
             printInRange(node.right, lr, rr);
-        }else{
+        } else {
             printInRange(node.left, lr, rr);
             System.out.println(node.data);
             printInRange(node.right, lr, rr);
@@ -135,29 +136,28 @@ public class BST {
 
     }
 
-    public static Node addData(Node node, int data){
-        if(node == null){
+    public static Node addData(Node node, int data) {
+        if (node == null) {
             return new Node(data);
         }
-        
-        
-        if(node.data < data){
+
+        if (node.data < data) {
             node.right = addData(node.right, data);
-        }else if(node.data > data){
+        } else if (node.data > data) {
             node.left = addData(node.left, data);
         }
         return node;
     }
 
-    public static Node removeNode(Node node, int data){
-        if(node.data < data){
-           node.right = removeNode(node.right, data);
-        }else if(node.data > data){
+    public static Node removeNode(Node node, int data) {
+        if (node.data < data) {
+            node.right = removeNode(node.right, data);
+        } else if (node.data > data) {
             node.left = removeNode(node.left, data);
-        }else {
-            if(node.left == null || node.right == null){
-               return  node.left != null ? node.left : node.right;
-            }else {
+        } else {
+            if (node.left == null || node.right == null) {
+                return node.left != null ? node.left : node.right;
+            } else {
                 int minEle = min(node.right);
                 node.data = minEle;
 
@@ -166,5 +166,37 @@ public class BST {
         }
         return node;
 
+    }
+
+    static int sum = 0;
+    public static void replaceWithSumOfLarger(Node node) {
+        if (node == null) {
+            return;
+        }
+        replaceWithSumOfLarger(node.right);
+        int pre = node.data;
+        node.data = sum;
+        sum += pre;
+        replaceWithSumOfLarger(node.left);
+    }
+
+    public void replaceWithSumOfLarger2(Node root, int arr[])
+    {
+        if(root == null){
+            return;
+        }
+        replaceWithSumOfLarger2(root.right, arr);
+       root.data += arr[0];
+       arr[0] = root.data;
+       replaceWithSumOfLarger2(root.left, arr);
+        
+        
+        
+    }
+    public Node modify(Node root){
+    int arr[] = new int[1];
+    replaceWithSumOfLarger2(root, arr);
+        
+        return root;
     }
 }
