@@ -180,6 +180,7 @@ public class BST {
         replaceWithSumOfLarger(node.left);
     }
 
+        //without using static
     public void replaceWithSumOfLarger2(Node root, int arr[])
     {
         if(root == null){
