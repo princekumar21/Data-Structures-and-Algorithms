@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 
+import jdk.internal.org.jline.terminal.impl.NativeSignalHandler;
+
 public class genericTree {
     public static class Node {
         int data;
@@ -58,7 +60,7 @@ public class genericTree {
     }
 
     public static Node lowestCommonAncestor(Node node, int d1, int d2){
-        
+        ArrayList<NativeSignalHandler>
     }
 
 }
