@@ -38,7 +38,17 @@ public class genericTree {
         return max;
     }
 
-    
+    public static boolean find(Node node, int data) {
+        if(node.data == data){
+            return true;
+        }
+        
+        boolean found = false;
+     for(Node childs : node.child){
+        found =  find(childs, data) || found;
+     }
+     return found;
+    }
 
     
 
