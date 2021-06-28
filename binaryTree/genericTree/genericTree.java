@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-import jdk.internal.org.jline.terminal.impl.NativeSignalHandler;
+
 
 public class genericTree {
     public static class Node {
@@ -59,8 +59,14 @@ public class genericTree {
         return path;
     }
 
-    public static Node lowestCommonAncestor(Node node, int d1, int d2){
-        ArrayList<NativeSignalHandler>
+    // public static Node lowestCommonAncestor(Node node, int d1, int d2){
+    //     ArrayList<Node> dj = new ArrayList<>();
+    // }
+
+    public static void levelOrderTraversal(Node node){
+        ArrayList<Node> que = new ArrayList<>();
+        que.addLast(node);
+
     }
 
 }
