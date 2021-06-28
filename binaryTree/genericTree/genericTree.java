@@ -29,7 +29,14 @@ public class genericTree {
         return s;
     }
 
-   
+    public static int max(Node node) {
+        int max = node.data;
+        for (Node childs : node.child) {
+            max = Math.max(max(childs), max);
+
+        }
+        return max;
+    }
 
     public static boolean find(Node node, int data) {
         if(node.data == data){
