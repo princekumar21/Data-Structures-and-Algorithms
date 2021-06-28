@@ -1,7 +1,5 @@
 import java.util.ArrayList;
 
-
-
 public class genericTree {
     public static class Node {
         int data;
@@ -20,6 +18,29 @@ public class genericTree {
         }
         return count + 1;
     }
+    public static int size2(Node node) {
+        int s = 0;
+
+        for (Node childs : node.child) {
+            s += size(childs);
+        }
+        s += 1;
+
+        return s;
+    }
+
+    public static int max(Node node) {
+        int max = node.data;
+        for (Node childs : node.child) {
+            max = Math.max(max(childs), max);
+
+        }
+        return max;
+    }
+
+    
+
+    
 
     public static boolean nodeToRootPath(Node node, int data, ArrayList<Integer> list) {
         if (node.data == data) {
@@ -59,14 +80,10 @@ public class genericTree {
         return path;
     }
 
-    // public static Node lowestCommonAncestor(Node node, int d1, int d2){
-    //     ArrayList<Node> dj = new ArrayList<>();
-    // }
-
-    public static void levelOrderTraversal(Node node){
-        ArrayList<Node> que = new ArrayList<>();
-        que.addLast(node);
-
+    public static Node lowestCommonAncestor(Node node, int d1, int d2){
+    
     }
+
+    
 
 }
