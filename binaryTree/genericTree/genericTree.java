@@ -18,6 +18,7 @@ public class genericTree {
         }
         return count + 1;
     }
+
     public static int size2(Node node) {
         int s = 0;
 
@@ -39,18 +40,16 @@ public class genericTree {
     }
 
     public static boolean find(Node node, int data) {
-        if(node.data == data){
+        if (node.data == data) {
             return true;
         }
-        
-        boolean found = false;
-     for(Node childs : node.child){
-        found =  find(childs, data) || found;
-     }
-     return found;
-    }
 
-    
+        boolean found = false;
+        for (Node childs : node.child) {
+            found = find(childs, data) || found;
+        }
+        return found;
+    }
 
     public static boolean nodeToRootPath(Node node, int data, ArrayList<Integer> list) {
         if (node.data == data) {
@@ -90,10 +89,25 @@ public class genericTree {
         return path;
     }
 
-    public static Node lowestCommonAncestor(Node node, int d1, int d2){
-    
-    }
+    public static Node lowestCommonAncestor(Node node, int d1, int d2) {
+        ArrayList<Node> path1 = nodeToRootPath(node, d1);
+        ArrayList<Node> path2 = nodeToRootPath(node, d2);
+        Node LCA = null;
+        int i = path1.size() - 1;
+        int j = path2.size() - 1;
 
-    
+        while (i >= 0 && j >= 0) {
+
+            if (path1.get(i) != path2.get(j)) {
+                break;
+            }
+
+            LCA = path2.get(j);
+
+            i--;
+            j--;
+        }
+        return LCA;
+    }
 
 }
