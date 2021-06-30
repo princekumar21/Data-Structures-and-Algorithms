@@ -32,10 +32,12 @@ public class graph {
     public static int findEdge(ArrayList<Edge>[] graph, int u, int v){
         ArrayList<Edge> list = graph[u];
         for(int i = 0; i < list.size(); i++){
-            if(list.nbr == v){
+            Edge e  = list.get(i);
+            if(e.nbr == v){
                 return i;
             }
         }
+        return -1;
 
 
     }
@@ -70,6 +72,7 @@ public class graph {
         // display(graph, N);
         removeEdge(graph, 0, 1);
         display(graph, N);
+        findEdge(graph, 3, 2);
         
     }
     public static void main(String args[]){
