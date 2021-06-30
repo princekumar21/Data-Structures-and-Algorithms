@@ -20,11 +20,23 @@ public class graph {
 
     public static void display(ArrayList<Edge>[] graph, int N){
         for(int i = 0; i < N; i++){
+            System.out.print(i + "->");
             for(Edge e : graph[i]){
-                System.out.print(i + "->"+ e.nbr +" @"+ e.wt +" ");
+                System.out.print("("+ e.nbr +" ,"+ e.wt +") ");
             }
             System.out.println();
         }
+
+    }
+
+    public static int findEdge(ArrayList<Edge>[] graph, int u, int v){
+        ArrayList<Edge> list = graph[u];
+        for(int i = 0; i < list.size(); i++){
+            if(list.nbr == v){
+                return i;
+            }
+        }
+
 
     }
 
