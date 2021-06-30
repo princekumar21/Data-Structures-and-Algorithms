@@ -28,6 +28,18 @@ public class graph {
 
     }
 
+    public static void removeEdge(ArrayList<Edge>[] graph, int u, int v){
+        for(Edge e : graph[u]){
+            if(e.nbr == v){
+                e.nbr = 0;
+                e.wt = 0;
+            }
+        }
+    }
+    public static void removevrtx(){
+
+    }
+
     public static void constructor(){
         int  N = 7;
         ArrayList<Edge>[] graph = new ArrayList[N];
@@ -43,8 +55,9 @@ public class graph {
         addEdge(graph, 4, 6, 5);
         addEdge(graph, 4, 5, 15);
         addEdge(graph, 5, 6, 10);
+        // display(graph, N);
+        removeEdge(graph, 0, 1);
         display(graph, N);
-
         
     }
     public static void main(String args[]){
