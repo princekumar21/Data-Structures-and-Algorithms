@@ -103,11 +103,12 @@ public class graph {
             if (vis[e.nbr] == false) {
 
                 printAllPath(graph, e.nbr, des, vis, psf + src);
-                vis[src] = false;
+                
 
             }
 
         }
+        vis[src] = false;
 
     }
 
