@@ -65,23 +65,20 @@ public class graph {
         if (src == des) {
             return true;
         }
-
         vis[src] = true;
+        boolean path = false;
         for (Edge e : graph[src]) {
 
             if (vis[e.nbr] == false) {
-                boolean path = hasPath(graph, e.nbr, des, vis);
-                if (path) {
-                    return true;
-                }
+                return path || hasPath(graph, e.nbr, des, vis);
+
             }
 
         }
-
-        return false;
-
+        return path;
     }
-    public static boolean hasPath(ArrayList<Edge>[] graph, int src, int des, boolean vis[]) {
+
+    public static boolean printAllPath(ArrayList<Edge>[] graph, int src, int des, boolean vis[]) {
         if (src == des) {
             return true;
         }
@@ -125,7 +122,7 @@ public class graph {
         // removevrtx(graph, 1);
         display(graph, N);
         boolean vis[] = new boolean[N];
-        System.out.println(hasPath(graph, 2, 5, vis));
+        System.out.println(hasPath(graph, 0, 6, vis));
 
     }
 
