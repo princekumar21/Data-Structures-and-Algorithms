@@ -48,17 +48,57 @@ public class graph {
 
         graph[u].remove(e);
         graph[v].remove(p);
-        
+
     }
 
     public static void removevrtx(ArrayList<Edge>[] graph, int u) {
         ArrayList<Edge> list = graph[u];
-        for(int i = list.size() - 1; i >= 0; i--){
+        for (int i = list.size() - 1; i >= 0; i--) {
             Edge e = list.get(i);
             removeEdge(graph, e.src, e.nbr);
 
         }
 
+    }
+
+    public static boolean hasPath(ArrayList<Edge>[] graph, int src, int des, boolean vis[]) {
+        if (src == des) {
+            return true;
+        }
+
+        vis[src] = true;
+        for (Edge e : graph[src]) {
+
+            if (vis[e.nbr] == false) {
+                boolean path = hasPath(graph, e.nbr, des, vis);
+                if (path) {
+                    return true;
+                }
+            }
+
+        }
+
+        return false;
+
+    }
+    public static boolean hasPath(ArrayList<Edge>[] graph, int src, int des, boolean vis[]) {
+        if (src == des) {
+            return true;
+        }
+
+        vis[src] = true;
+        for (Edge e : graph[src]) {
+
+            if (vis[e.nbr] == false) {
+                boolean path = hasPath(graph, e.nbr, des, vis);
+                if (path) {
+                    return true;
+                }
+            }
+
+        }
+
+        return false;
 
     }
 
@@ -81,9 +121,11 @@ public class graph {
         // removeEdge(graph, 0, 1);
         // display(graph, N);
         // System.out.println(findEdge(graph, 1, 2));
-        removeEdge(graph, 4, 3);
-        removevrtx(graph, 1);
+        // removeEdge(graph, 4, 3);
+        // removevrtx(graph, 1);
         display(graph, N);
+        boolean vis[] = new boolean[N];
+        System.out.println(hasPath(graph, 2, 5, vis));
 
     }
 
