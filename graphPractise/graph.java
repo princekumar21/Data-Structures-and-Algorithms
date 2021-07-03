@@ -78,24 +78,36 @@ public class graph {
         return path;
     }
 
-    public static boolean printAllPath(ArrayList<Edge>[] graph, int src, int des, boolean vis[]) {
+    public static void prOrder(ArrayList<Edge>[] graph, int src, int des, boolean vis[], int wsf, String psf) {
+        if (src == des)
+            return;
+
+        for (Edge e : graph[src]) {
+            if (!vis[e.nbr]) {
+
+                prOrder(graph, e.nbr, des, vis, wsf + e.wt, psf + src);
+            }
+        }
+    }
+
+    public static void printAllPath(ArrayList<Edge>[] graph, int src, int des, boolean vis[], String psf) {
         if (src == des) {
-            return true;
+            System.out.print(psf + src);
+            System.out.println();
+            return;
         }
 
         vis[src] = true;
         for (Edge e : graph[src]) {
 
             if (vis[e.nbr] == false) {
-                boolean path = hasPath(graph, e.nbr, des, vis);
-                if (path) {
-                    return true;
-                }
+
+                printAllPath(graph, e.nbr, des, vis, psf + src);
+                vis[src] = false;
+
             }
 
         }
-
-        return false;
 
     }
 
@@ -120,10 +132,10 @@ public class graph {
         // System.out.println(findEdge(graph, 1, 2));
         // removeEdge(graph, 4, 3);
         // removevrtx(graph, 1);
-        display(graph, N);
+        // display(graph, N);
         boolean vis[] = new boolean[N];
-        System.out.println(hasPath(graph, 0, 6, vis));
-
+        // System.out.println(hasPath(graph, 0, 6, vis));
+        printAllPath(graph, 0, 6, vis, "");
     }
 
     public static void main(String args[]) {
