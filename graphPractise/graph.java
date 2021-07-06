@@ -78,16 +78,20 @@ public class graph {
         return path;
     }
 
-    public static void prOrder(ArrayList<Edge>[] graph, int src, int des, boolean vis[], int wsf, String psf) {
-        if (src == des)
-            return;
+    public static void preOrder(ArrayList<Edge>[] graph, int src, int des, boolean vis[], int wsf, String psf) {
+        
+        System.out.println(src + " -> " + psf +  " @ " + wsf);
 
-        for (Edge e : graph[src]) {
-            if (!vis[e.nbr]) {
+        vis[src] = true;
+        for(Edge e : graph[src]){
+            if(!vis[e.nbr]){
+                preOrder(graph, e.nbr, des, vis, wsf + e.wt, psf + e.nbr  );
 
-                prOrder(graph, e.nbr, des, vis, wsf + e.wt, psf + src);
             }
         }
+        vis[src] = false;
+
+        return;
     }
 
     public static void printAllPath(ArrayList<Edge>[] graph, int src, int des, boolean vis[], String psf) {
@@ -136,7 +140,8 @@ public class graph {
         // display(graph, N);
         boolean vis[] = new boolean[N];
         // System.out.println(hasPath(graph, 0, 6, vis));
-        printAllPath(graph, 0, 6, vis, "");
+        // printAllPath(graph, 0, 6, vis, "");
+        preOrder(graph, 0, 6, vis, 0, "0");
     }
 
     public static void main(String args[]) {
