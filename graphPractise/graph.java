@@ -133,6 +133,10 @@ public class graph {
 
     }
 
+    public static void haviestPath(){
+        
+    }
+
     public static void constructor() {
         int N = 7;
         ArrayList<Edge>[] graph = new ArrayList[N];
@@ -145,8 +149,8 @@ public class graph {
         addEdge(graph, 2, 3, 2);
         addEdge(graph, 3, 0, 10);
         addEdge(graph, 4, 3, 40);
-        addEdge(graph, 4, 6, 5);
         addEdge(graph, 4, 5, 15);
+        addEdge(graph, 4, 6, 5);
         addEdge(graph, 5, 6, 10);
         // display(graph, N);
         // removeEdge(graph, 0, 1);
