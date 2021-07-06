@@ -133,8 +133,43 @@ public class graph {
 
     }
 
-    public static void haviestPath(){
-        
+    public static class pairPath {
+        String psf = "";
+        int wsf = 0;
+    }
+
+    public static pairPath haviestPath(ArrayList<Edge>[] graph, int src, int des, boolean vis[]){
+        if(src == des){
+            pairPath base = new pairPath();
+            base.psf += src;
+            return base; 
+        }
+
+        pairPath myAns = new pairPath();
+        vis[src] = true;
+        for(Edge e : graph[src]){
+            if(!vis[e.nbr]){
+                pairPath recAns = haviestPath(graph, e.nbr, des, vis);
+                if(recAns.wsf + e.wt > recAns.wsf){
+                    myAns.psf = src  + recAns.psf;
+                    myAns.wsf =  recAns.wsf + e.wt;
+
+                }
+            }
+        }
+
+        vis[src] = false;
+        return myAns;
+
+    }
+
+    public static void haviestPathCall(ArrayList<Edge>[] graph, int src, int des, boolean vis[]){
+
+        pairPath ans = haviestPath(graph, src, des, vis);
+
+        System.out.println(ans.psf + " @ " + ans.wsf);
+
+
     }
 
     public static void constructor() {
@@ -163,7 +198,8 @@ public class graph {
         // System.out.println(hasPath(graph, 0, 6, vis));
         // printAllPath(graph, 0, 6, vis, "");
         // preOrder(graph, 0, 6, vis, 0, "0");
-        postOrder(graph, 0, 6, vis, 0, "0");
+        // postOrder(graph, 0, 6, vis, 0, "0");
+        haviestPathCall(graph, 0, 6, vis);
     }
 
     public static void main(String args[]) {
