@@ -94,6 +94,23 @@ public class graph {
         return;
     }
 
+    public static void postOrder(ArrayList<Edge>[] graph, int src, int des, boolean vis[], int wsf, String psf) {
+        
+        
+
+        vis[src] = true;
+        for(Edge e : graph[src]){
+            if(!vis[e.nbr]){
+                postOrder(graph, e.nbr, des, vis, wsf + e.wt, psf + e.nbr  );
+
+            }
+        }
+        System.out.println(src + " -> " + psf +  " @ " + wsf);
+        vis[src] = false;
+
+        return;
+    }
+
     public static void printAllPath(ArrayList<Edge>[] graph, int src, int des, boolean vis[], String psf) {
         if (src == des) {
             System.out.print(psf + src);
@@ -141,7 +158,8 @@ public class graph {
         boolean vis[] = new boolean[N];
         // System.out.println(hasPath(graph, 0, 6, vis));
         // printAllPath(graph, 0, 6, vis, "");
-        preOrder(graph, 0, 6, vis, 0, "0");
+        // preOrder(graph, 0, 6, vis, 0, "0");
+        postOrder(graph, 0, 6, vis, 0, "0");
     }
 
     public static void main(String args[]) {
