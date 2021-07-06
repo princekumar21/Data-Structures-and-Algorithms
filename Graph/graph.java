@@ -179,16 +179,7 @@ public class graph {
         System.out.println(countComponent);
     }
 
-    public static void gcc_dfs(ArrayList<Edge>[] graph, boolean[] v, int src) {
-        v[src] = true;
-        for (Edge e : graph[src]) {
-            if (!v[e.nbr]) {
-                gcc_dfs(graph, v, e.nbr);
-            }
-
-        }
-        
-    }
+    
 
     public static void construction() {
         int N = 7;
