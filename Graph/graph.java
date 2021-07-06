@@ -152,13 +152,7 @@ public class graph {
         int min = (int) 1e9;
     }
 
-    public static void ceilAndFloor(ArrayList<Edge> graph, int src, int data, boolean[] vis, int wsf,
-            ceilFloorPair pair) {
-        for (Edge e : graph[src]) {
-
-        }
-
-    }
+    
 
     public static void ceilAndFloor(ArrayList<Edge> graph,  ){
 
