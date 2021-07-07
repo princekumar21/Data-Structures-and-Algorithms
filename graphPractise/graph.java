@@ -234,26 +234,29 @@ public class graph {
         System.out.println(componentCount);
 
     }
-    public static void dfs(int[][] grid, int sr, int sc, int[][] dir){
+    public static int dfs(int[][] grid, int sr, int sc, int[][] dir){
+        int size = 0;
         grid[sr][sc] = 0;
         for(int d = 0; d  < 4; d++){
             sr = sr + dir[d][0];
             sc = sc + dir[d][1];
 
             if(sr >= 0 && sc >= 0 && sr < grid.length && sc < grid[0].length && grid[sr][sc] == 1){
-                dfs(grid, sr, sc, dir);
+                size += dfs(grid, sr, sc, dir);
             }
         }
+        return size  + 1;
     }
 
     public static void numberOfIslands(int[][] grid){
-        int n = grid.length; int m = grid[0].length; 
+        int n = grid.length; int m = grid[0].length; int islandCount = 0;
 
         int[][] dir = {{1, 0}, {0, -1}, {-1, 0}, {0, 1}};
         for(int i = 0; i < n; i++){
             for(int j = 0; j < m; j++){
                 if(grid[i][j] == 1){
                     dfs(grid, i, j, dir);
+                    islandCount++;
                 }
             }
         }
