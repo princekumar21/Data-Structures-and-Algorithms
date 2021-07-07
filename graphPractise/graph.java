@@ -211,11 +211,11 @@ public class graph {
 
     }
 
-    public static void dfs(ArrayList<Edge>[] graph, int src, boolean[] vis){
+    public static void dfsG(ArrayList<Edge>[] graph, int src, boolean[] vis){
         vis[src]  = true;
         for(Edge e : graph[src]){
             if(!vis[e.nbr]){
-                dfs(graph, e.nbr, vis);
+                dfsG(graph, e.nbr, vis);
             }
         }
 
@@ -225,7 +225,7 @@ public class graph {
         int N = graph.length; int componentCount = 0;
         for(int i = 0; i < N; i++){
             if(!vis[i]){
-                dfs(graph, i, vis);
+                dfsG(graph, i, vis);
                 componentCount++;
 
             }
@@ -234,14 +234,26 @@ public class graph {
         System.out.println(componentCount);
 
     }
-    
+    public static void dfs(int[][] grid, int sr, int sc, int[][] dir){
+        grid[sr][sc] = 0;
+        for(int d = 0; d  < 4; d++){
+            sr = sr + dir[d][0];
+            sc = sc + dir[d][1];
+
+            if(sr >= 0 && sc >= 0 && sr < grid.length && sc < grid[0].length && grid[sr][sc] == 1){
+                dfs(grid, sr, sc, dir);
+            }
+        }
+    }
 
     public static void numberOfIslands(int[][] grid){
         int n = grid.length; int m = grid[0].length; 
+
+        int[][] dir = {{1, 0}, {0, -1}, {-1, 0}, {0, 1}};
         for(int i = 0; i < n; i++){
             for(int j = 0; j < m; j++){
                 if(grid[i][j] == 1){
-
+                    dfs(grid, i, j, dir);
                 }
             }
         }
