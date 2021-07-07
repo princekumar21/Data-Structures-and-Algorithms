@@ -150,7 +150,7 @@ public class graph {
         for(Edge e : graph[src]){
             if(!vis[e.nbr]){
                 pairPath recAns = haviestPath(graph, e.nbr, des, vis);
-                if(recAns.wsf + e.wt > recAns.wsf){
+                if(recAns.wsf + e.wt > myAns.wsf){
                     myAns.psf = src  + recAns.psf;
                     myAns.wsf =  recAns.wsf + e.wt;
 
@@ -172,6 +172,69 @@ public class graph {
 
     }
 
+    public static class pairPathS {
+        String psf = "";
+        int wsf = 100;
+    }
+
+    public static pairPathS lightiestPath(ArrayList<Edge>[] graph, int src, int des, boolean vis[]){
+        if(src == des){
+            pairPathS base = new pairPathS();
+            base.psf += src;
+            return base; 
+        }
+
+        pairPathS myAns = new pairPathS();
+        vis[src] = true;
+        for(Edge e : graph[src]){
+            if(!vis[e.nbr]){
+                pairPathS recAns = lightiestPath(graph, e.nbr, des, vis);
+                if(recAns.wsf + e.wt < myAns.wsf){
+                    myAns.psf = src  + recAns.psf;
+                    myAns.wsf =  recAns.wsf + e.wt;
+
+                }
+            }
+        }
+
+        vis[src] = false;
+        return myAns;
+
+    }
+
+    public static void lightiestPathCall(ArrayList<Edge>[] graph, int src, int des, boolean vis[]){
+
+        pairPathS ans = lightiestPath(graph, src, des, vis);
+
+        System.out.println(ans.psf + " @ " + ans.wsf);
+
+
+    }
+
+    public static void dfs(ArrayList<Edge>[] graph, int src, boolean[] vis){
+        vis[src]  = true;
+        for(Edge e : graph[src]){
+            if(!vis[e.nbr]){
+                dfs(graph, e.nbr, vis);
+            }
+        }
+
+    }
+
+    public static void getconnectedComponent(ArrayList<Edge>[] graph, boolean[] vis){
+        int N = graph.length; int componentCount = 0;
+        for(int i = 0; i < N; i++){
+            if(!vis[i]){
+                dfs(graph, i, vis);
+                componentCount++;
+
+            }
+
+        }
+        System.out.println(componentCount);
+
+    }
+
     public static void constructor() {
         int N = 7;
         ArrayList<Edge>[] graph = new ArrayList[N];
@@ -182,8 +245,8 @@ public class graph {
         addEdge(graph, 0, 1, 10);
         addEdge(graph, 2, 1, 10);
         addEdge(graph, 2, 3, 2);
-        addEdge(graph, 3, 0, 10);
-        addEdge(graph, 4, 3, 40);
+        // addEdge(graph, 3, 0, 10);
+        // addEdge(graph, 4, 3, 40);
         addEdge(graph, 4, 5, 15);
         addEdge(graph, 4, 6, 5);
         addEdge(graph, 5, 6, 10);
@@ -199,7 +262,9 @@ public class graph {
         // printAllPath(graph, 0, 6, vis, "");
         // preOrder(graph, 0, 6, vis, 0, "0");
         // postOrder(graph, 0, 6, vis, 0, "0");
-        haviestPathCall(graph, 0, 6, vis);
+        // haviestPathCall(graph, 0, 6, vis);
+        // lightiestPathCall(graph, 0, 6, vis);
+        getconnectedComponent(graph, vis);
     }
 
     public static void main(String args[]) {
