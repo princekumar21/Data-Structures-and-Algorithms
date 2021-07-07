@@ -234,6 +234,19 @@ public class graph {
         System.out.println(componentCount);
 
     }
+    
+
+    public static void numberOfIslands(int[][] grid){
+        int n = grid.length; int m = grid[0].length; 
+        for(int i = 0; i < n; i++){
+            for(int j = 0; j < m; j++){
+                if(grid[i][j] == 1){
+
+                }
+            }
+        }
+
+    }
 
     public static void constructor() {
         int N = 7;
@@ -245,8 +258,8 @@ public class graph {
         addEdge(graph, 0, 1, 10);
         addEdge(graph, 2, 1, 10);
         addEdge(graph, 2, 3, 2);
-        // addEdge(graph, 3, 0, 10);
-        // addEdge(graph, 4, 3, 40);
+        addEdge(graph, 3, 0, 10);
+        addEdge(graph, 4, 3, 40);
         addEdge(graph, 4, 5, 15);
         addEdge(graph, 4, 6, 5);
         addEdge(graph, 5, 6, 10);
