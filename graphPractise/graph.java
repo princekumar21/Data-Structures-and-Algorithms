@@ -238,10 +238,10 @@ public class graph {
         int size = 0;
         grid[sr][sc] = 0;
         for(int d = 0; d  < 4; d++){
-            sr = sr + dir[d][0];
-            sc = sc + dir[d][1];
+            int r = sr + dir[d][0];
+            int c = sc + dir[d][1];
 
-            if(sr >= 0 && sc >= 0 && sr < grid.length && sc < grid[0].length && grid[sr][sc] == 1){
+            if(sr >= 0 && sc >= 0 && sr < grid.length && sc < grid[0].length && grid[r][c] == 1){
                 size += dfs(grid, sr, sc, dir);
             }
         }
@@ -260,6 +260,33 @@ public class graph {
                 }
             }
         }
+
+    }
+
+    public static void hamiltonianPathAndCycle(ArrayList<Edge>[] graph, int osrc, int src, int edgeCount, boolean vis[], String psf){
+        if(edgeCount == graph.length){
+            int index = findEdge(graph, src, osrc);
+            if(index == -1){
+                System.out.println(psf + ".");
+            }else{
+                System.out.println(psf + "*");
+            }
+        }
+
+
+        vis[src] = true;
+        for(Edge  e : graph[src]){
+            if(!vis[e.nbr]){
+                hamiltonianPathAndCycle(graph, osrc, e.nbr, edgeCount + 1, vis, psf + e.nbr);
+            }
+             
+
+        }
+        vis[src] = false;
+
+
+    }
+    public static void hamiltonianPathAndCycle(){
 
     }
 
@@ -292,7 +319,8 @@ public class graph {
         // postOrder(graph, 0, 6, vis, 0, "0");
         // haviestPathCall(graph, 0, 6, vis);
         // lightiestPathCall(graph, 0, 6, vis);
-        getconnectedComponent(graph, vis);
+        // 
+        hamiltonianPathAndCycle(graph, 0, 0, 0, vis, "0");
     }
 
     public static void main(String args[]) {
