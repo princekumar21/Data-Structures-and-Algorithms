@@ -264,7 +264,7 @@ public class graph {
     }
 
     public static void hamiltonianPathAndCycle(ArrayList<Edge>[] graph, int osrc, int src, int edgeCount, boolean vis[], String psf){
-        if(edgeCount == graph.length){
+        if(edgeCount == graph.length - 1){
             int index = findEdge(graph, src, osrc);
             if(index == -1){
                 System.out.println(psf + ".");
@@ -286,9 +286,7 @@ public class graph {
 
 
     }
-    public static void hamiltonianPathAndCycle(){
-
-    }
+    
 
     public static void constructor() {
         int N = 7;
@@ -305,6 +303,7 @@ public class graph {
         addEdge(graph, 4, 5, 15);
         addEdge(graph, 4, 6, 5);
         addEdge(graph, 5, 6, 10);
+        addEdge(graph, 6, 0, 10);
         // display(graph, N);
         // removeEdge(graph, 0, 1);
         // display(graph, N);
