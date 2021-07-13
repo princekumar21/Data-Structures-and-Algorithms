@@ -290,18 +290,16 @@ public class graph {
         int N = graph.length;
         boolean[] vis = new boolean[N];
         boolean isCyclePresent = false;
-        
-        que.addLast(src);
 
-       
+        que.addLast(src);
 
         while (que.size() != 0) {
             int size = que.size();
             while (size-- > 0) {
                 int rvtx = que.removeFirst();
 
-                //for cyclic detection
-                if(vis[rvtx]){
+                // for cyclic detection
+                if (vis[rvtx]) {
                     isCyclePresent = true;
                     continue;
                 }
@@ -315,6 +313,35 @@ public class graph {
             }
 
         }
+
+    }
+
+    public static boolean cyclicDetection(ArrayList<Edge>[] graph, int src, boolean vis[]) {
+        LinkedList<Integer> que = new LinkedList<>();
+
+        que.addLast(src);
+
+        while (que.size() != 0) {
+            int size = que.size();
+            while (size-- > 0) {
+                int rvtx = que.removeFirst();
+
+                if (vis[rvtx]) {
+
+                    return true;
+
+                }
+                vis[rvtx] = true;
+                for (Edge e : graph[rvtx]) {
+                    if (!vis[e.nbr]) {
+                        que.addLast(e.nbr);
+                    }
+
+                }
+            }
+
+        }
+        return false;
 
     }
 
