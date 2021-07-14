@@ -394,6 +394,46 @@ public class graph {
         return infectedCount;
     }
 
+    public static boolean isGraphBipartite(ArrayList<Edge>[] graph, int src){
+        LinkedList<Integer> que = new LinkedList<>();
+        boolean isBipartite = true; 
+        int vis[] = new int[graph.length];
+        for(int i = 0; i < vis.length; i++){
+            vis[i] = -1;
+        }
+        int color = 0;
+        que.add(src);
+
+        for(int i = 0; i < graph.length; i++){
+            while(que.size() != 0){
+                int size = que.size();
+                color = (color + 1)  % 2;
+                while(size-- > 0){
+                    int rmvtx = que.removeFirst();
+
+                    if(vis[rmvtx] != color){
+                        isBipartite = false;
+                       break;
+                    }
+                    vis[rmvtx] = color;
+
+
+
+                    for(Edge e : graph[rmvtx]){
+                        if(vis[e.nbr] < 0){
+                            que.add(e.nbr);
+
+                        }
+                    }
+                }
+            }
+        }
+        return isBipartite;
+         
+
+
+    }
+
     public static void constructor() {
         int N = 7;
         ArrayList<Edge>[] graph = new ArrayList[N];
