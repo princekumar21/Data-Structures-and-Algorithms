@@ -415,6 +415,8 @@ public class graph {
                         isBipartite = false;
                         break;
                     }
+
+                    continue;
                 }
                 vis[rmvtx] = color;
 
