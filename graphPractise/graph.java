@@ -344,6 +344,21 @@ public class graph {
         return false;
 
     }
+    public static class BFS_Pair {
+        int vtx = 0;
+        String psf = "";
+        int wt = 0;
+
+        BFS_Pair(int vtx, String psf, int wt){
+            this.vtx = vtx;
+            this.psf = psf;
+            this.wt = wt;
+        }
+
+
+    }
+
+    publi cstatic voi 
 
     public static void constructor() {
         int N = 7;
