@@ -344,24 +344,61 @@ public class graph {
         return false;
 
     }
+
     public static class BFS_Pair {
         int vtx = 0;
         String psf = "";
         int wt = 0;
 
-        BFS_Pair(int vtx, String psf, int wt){
+        BFS_Pair(int vtx, String psf, int wt) {
             this.vtx = vtx;
             this.psf = psf;
             this.wt = wt;
         }
 
+    }
+
+    public static void printBSFPath() {
+        ArrayList<BFS_Pair> que = new ArrayList<>();
 
     }
 
-    public static void printBSFPath(){
-        ArrayList<BFS_Pair> que = new ArrayList<>();
-        
-    } 
+    public static int spreadInfection(ArrayList<Edge>[] graph, int src, int time, boolean vis[]) {
+        LinkedList<Integer> que = new LinkedList<>();
+        que.add(src);
+        int infectedCount = 0;
+        int day = 1;
+
+        while (que.size() != 0) {
+
+            int size = que.size();
+
+            if (day > time) {
+                break;
+            }
+            while (size-- > 0) {
+                int rmvtx = que.removeFirst();
+
+                if (vis[rmvtx]) {
+                    continue;
+                }
+
+                infectedCount++;
+                vis[rmvtx] = true;
+                for (Edge e : graph[rmvtx]) {
+                    if (!vis[e.nbr]) {
+                        que.addLast(e.nbr);
+                    }
+
+                }
+            }
+
+            day++;
+
+        }
+        return infectedCount;
+
+    }
 
     public static void constructor() {
         int N = 7;
@@ -393,7 +430,8 @@ public class graph {
         // postOrder(graph, 0, 6, vis, 0, "0");
         // haviestPathCall(graph, 0, 6, vis);
         // lightiestPathCall(graph, 0, 6, vis);
-        hamiltonianPathAndCycle(graph, 0, 0, 0, vis, "0");
+        // hamiltonianPathAndCycle(graph, 0, 0, 0, vis, "0");
+        System.out.println(spreadInfection(graph, 6, 3, vis));
     }
 
     public static void main(String args[]) {
