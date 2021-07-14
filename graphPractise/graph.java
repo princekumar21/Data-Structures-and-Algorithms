@@ -370,9 +370,7 @@ public class graph {
         int day = 1;
 
         while (que.size() != 0) {
-
             int size = que.size();
-
             if (day > time) {
                 break;
             }
@@ -389,15 +387,11 @@ public class graph {
                     if (!vis[e.nbr]) {
                         que.addLast(e.nbr);
                     }
-
                 }
             }
-
             day++;
-
         }
         return infectedCount;
-
     }
 
     public static void constructor() {
