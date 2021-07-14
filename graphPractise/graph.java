@@ -405,13 +405,13 @@ public class graph {
         vis[0] = 0;
         while (que.size() != 0) {
             int size = que.size();
-            
+
             while (size-- > 0) {
                 int rmvtx = que.removeFirst();
 
                 if (vis[rmvtx] != -1) {
                     cycle = true;
-                    if(vis[rmvtx] != color){
+                    if (vis[rmvtx] != color) {
                         isBipartite = false;
                         break;
                     }
@@ -429,6 +429,13 @@ public class graph {
             }
             color = (color + 1) % 2;
         }
+        if (cycle)
+            if (isBipartite)
+                System.out.println("Even length cycle");
+            else
+                System.out.println("Odd length cycle");
+        else
+            System.out.println("A-Cyclic and Bipartite graph");
 
         return isBipartite;
 
@@ -438,9 +445,9 @@ public class graph {
         int N = graph.length;
         int vis[] = new int[N];
         Arrays.fill(vis, -1);
-        boolean  Bipartite = true;
+        boolean Bipartite = true;
         for (int i = 0; i < N; i++) {
-             Bipartite= isGraphBipartite(graph, i, vis);
+            Bipartite = isGraphBipartite(graph, i, vis);
         }
 
         return Bipartite;
