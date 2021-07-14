@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.Arrays;
 
 public class graph {
     public static class Edge {
@@ -394,44 +395,50 @@ public class graph {
         return infectedCount;
     }
 
-    public static boolean isGraphBipartite(ArrayList<Edge>[] graph, int src){
+    public static boolean isGraphBipartite(ArrayList<Edge>[] graph) {
         LinkedList<Integer> que = new LinkedList<>();
-        boolean isBipartite = true; 
+        boolean isBipartite = true;
         int vis[] = new int[graph.length];
-        for(int i = 0; i < vis.length; i++){
+        for (int i = 0; i < vis.length; i++) {
             vis[i] = -1;
         }
-        int color = 0;
-        que.add(src);
 
-        for(int i = 0; i < graph.length; i++){
-            while(que.size() != 0){
-                int size = que.size();
-                color = (color + 1)  % 2;
-                while(size-- > 0){
-                    int rmvtx = que.removeFirst();
+        for (int i = 0; i < graph.length; i++) {
 
-                    if(vis[rmvtx] != color){
-                        isBipartite = false;
-                       break;
-                    }
-                    vis[rmvtx] = color;
+            if (vis[i] == -1) {
+                int color = 0;
+                que.add(i);
+                vis[i]  = 0;
+                while (que.size() != 0) {
+                    int size = que.size();
+                    color = (color + 1) % 2;
+                    while (size-- > 0) {
+                        int rmvtx = que.removeFirst();
 
+                        if (vis[rmvtx] != color) {
+                            isBipartite = false;
+                            break;
+                        }
+                        vis[rmvtx] = color;
 
+                        for (Edge e : graph[rmvtx]) {
+                            if (vis[e.nbr] < 0) {
+                                que.add(e.nbr);
 
-                    for(Edge e : graph[rmvtx]){
-                        if(vis[e.nbr] < 0){
-                            que.add(e.nbr);
-
+                            }
                         }
                     }
                 }
             }
         }
         return isBipartite;
-         
 
+    }
 
+    public static boolean isGraphBipartite(ArrayList<Edge>[] graph){
+        int N = graph.length;
+        int vis[] = new int[N];
+        Arrays.fill(vis, -1);
     }
 
     public static void constructor() {
@@ -465,10 +472,10 @@ public class graph {
         // haviestPathCall(graph, 0, 6, vis);
         // lightiestPathCall(graph, 0, 6, vis);
         // hamiltonianPathAndCycle(graph, 0, 0, 0, vis, "0");
-        System.out.println(spreadInfection(graph, 6, 3, vis));
+        // System.out.println(spreadInfection(graph, 6, 3, vis));
+        System.out.println(isGraphBipartite(graph));
     }
-
-    public static void main(String args[]) {
+     public static void main(String args[]) {
         constructor();
     }
 }
