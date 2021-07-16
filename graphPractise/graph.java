@@ -444,19 +444,7 @@ public class graph {
 
     }
 
-    public static boolean isGraphBipartite(ArrayList<Edge>[] graph) {
-        int N = graph.length;
-        int vis[] = new int[N];
-        Arrays.fill(vis, -1);
-        boolean Bipartite = true;
-        for (int i = 0; i < N; i++) {
-            if (vis[i] == -1) {
-                Bipartite = isGraphBipartite(graph, i, vis);
-            }
-        }
-
-        return Bipartite;
-    }
+    
 
     public static void constructor() {
         int N = 7;
