@@ -137,7 +137,25 @@ public class graph {
         int wsf = 0;
     }
 
-    
+    public static pairPath haviestPath(ArrayList<Edge>[] graph, int src, int des, boolean vis[]) {
+        if (src == des) {
+            pairPath base = new pairPath();
+            base.psf += src;
+            return base;
+        }
+
+        pairPath myAns = new pairPath();
+        vis[src] = true;
+        for (Edge e : graph[src]) {
+            if (!vis[e.nbr]) {
+                pairPath recAns = haviestPath(graph, e.nbr, des, vis);
+                if (recAns.wsf + e.wt > myAns.wsf) {
+                    myAns.psf = src + recAns.psf;
+                    myAns.wsf = recAns.wsf + e.wt;
+
+                }
+            }
+        }
 
         vis[src] = false;
         return myAns;
