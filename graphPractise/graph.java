@@ -137,25 +137,7 @@ public class graph {
         int wsf = 0;
     }
 
-    public static pairPath haviestPath(ArrayList<Edge>[] graph, int src, int des, boolean vis[]) {
-        if (src == des) {
-            pairPath base = new pairPath();
-            base.psf += src;
-            return base;
-        }
-
-        pairPath myAns = new pairPath();
-        vis[src] = true;
-        for (Edge e : graph[src]) {
-            if (!vis[e.nbr]) {
-                pairPath recAns = haviestPath(graph, e.nbr, des, vis);
-                if (recAns.wsf + e.wt > myAns.wsf) {
-                    myAns.psf = src + recAns.psf;
-                    myAns.wsf = recAns.wsf + e.wt;
-
-                }
-            }
-        }
+    
 
         vis[src] = false;
         return myAns;
@@ -413,7 +395,7 @@ public class graph {
                     cycle = true;
                     if (vis[rmvtx] != color) {
                         isBipartite = false;
-                        break;
+
                     }
 
                     continue;
@@ -429,13 +411,16 @@ public class graph {
             }
             color = (color + 1) % 2;
         }
-        if (cycle)
-            if (isBipartite)
+        if (cycle) {
+            if (isBipartite) {
                 System.out.println("Even length cycle");
-            else
+            } else {
                 System.out.println("Odd length cycle");
-        else
+            }
+
+        } else {
             System.out.println("A-Cyclic and Bipartite graph");
+        }
 
         return isBipartite;
 
@@ -447,7 +432,9 @@ public class graph {
         Arrays.fill(vis, -1);
         boolean Bipartite = true;
         for (int i = 0; i < N; i++) {
-            Bipartite = isGraphBipartite(graph, i, vis);
+            if (vis[i] == -1) {
+                Bipartite = isGraphBipartite(graph, i, vis);
+            }
         }
 
         return Bipartite;
