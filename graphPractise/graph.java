@@ -247,7 +247,22 @@ public class graph {
         return size + 1;
     }
 
-    
+    public static void numberOfIslands(int[][] grid) {
+        int n = grid.length;
+        int m = grid[0].length;
+        int islandCount = 0;
+
+        int[][] dir = { { 1, 0 }, { 0, -1 }, { -1, 0 }, { 0, 1 } };
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                if (grid[i][j] == 1) {
+                    dfs(grid, i, j, dir);
+                    islandCount++;
+                }
+            }
+        }
+
+    }
 
     public static void hamiltonianPathAndCycle(ArrayList<Edge>[] graph, int osrc, int src, int edgeCount, boolean vis[],
             String psf) {
