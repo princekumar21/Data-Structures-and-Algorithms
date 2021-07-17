@@ -233,19 +233,7 @@ public class graph {
 
     }
 
-    public static int dfs(int[][] grid, int sr, int sc, int[][] dir) {
-        int size = 0;
-        grid[sr][sc] = 0;
-        for (int d = 0; d < 4; d++) {
-            int r = sr + dir[d][0];
-            int c = sc + dir[d][1];
-
-            if (sr >= 0 && sc >= 0 && sr < grid.length && sc < grid[0].length && grid[r][c] == 1) {
-                size += dfs(grid, sr, sc, dir);
-            }
-        }
-        return size + 1;
-    }
+    
 
     public static void numberOfIslands(int[][] grid) {
         int n = grid.length;
