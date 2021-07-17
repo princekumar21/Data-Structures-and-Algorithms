@@ -218,20 +218,7 @@ public class graph {
 
     }
 
-    public static void getconnectedComponent(ArrayList<Edge>[] graph, boolean[] vis) {
-        int N = graph.length;
-        int componentCount = 0;
-        for (int i = 0; i < N; i++) {
-            if (!vis[i]) {
-                dfsG(graph, i, vis);
-                componentCount++;
-
-            }
-
-        }
-        System.out.println(componentCount);
-
-    }
+    
     public static int dfs(int[][] grid, int sr, int sc, int[][] dir) {
         int size = 0;
         grid[sr][sc] = 0;
