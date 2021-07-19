@@ -34,5 +34,30 @@ public class decimalSubtraction {
         return ans;
 
     }
-    
+    public static int anyBaseSubtraction(int n1, int n2, int b){
+        int carry = 0;
+        int pow = 1;
+        int ans = 0;
+
+        while(n2 != 0){
+            int rem2 = n1 != 0 ? n1 % 10 : 0;
+            int rem1 = n2 % 10;
+
+            if((carry + rem1) < rem2){
+                int diff = b + (carry + rem1) - rem2;
+                ans += diff * pow;
+                carry = -1;
+                pow *= 10;
+            }else {
+                ans += (carry + (rem1 - rem2)) * pow;
+                carry = 0;
+                pow *= 10;
+            }
+
+            n1 /= 10;
+            n2 /= 10; 
+        }
+        return ans;
+
+    }
 }
