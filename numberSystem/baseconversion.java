@@ -34,17 +34,7 @@ public class baseconversion {
         System.out.print(ans);
 
     }
-    public static int decimalToAnyBase(int n, int b){
-        int ans = 0;
-        int pow = 1;
-        while(n != 0){
-           int  rem = n % b;
-            ans += rem * pow;
-            pow *= 10;
-             n /= b;
-        }
-        return ans;
-    }
+    
     public static int anyBaseToDecimal(int n, int b){
         int ans = 0;
         int pow = 1;
