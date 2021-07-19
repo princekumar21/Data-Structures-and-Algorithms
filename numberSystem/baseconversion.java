@@ -45,7 +45,19 @@ public class baseconversion {
         }
         return ans;
     }
-    
+    public static int anyBaseToDecimal(int n, int b){
+        int ans = 0;
+        int pow = 1;
+        while(n != 0){
+            int rem = n % 10;
+            ans += rem * pow;
+            pow *= b;
+            n /= 10;
+
+        }
+        return ans;
+
+    }
 
 
     
