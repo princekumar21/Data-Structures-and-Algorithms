@@ -188,18 +188,7 @@ public class recursions {
         
     }
 
-    public static int lastIndex(int[] arr, int data, int idx) {
-        if(idx >= arr.length){
-            return -1;
-        }
-
-        int ans = lastIndex(arr, data, idx + 1);
-        if(ans != -1){
-            return ans;
-        }
-
-        return arr[idx] == data ? idx : -1;
-    }
+    
 
     // public static int[] allIndex(int[] arr, int data, int idx) {
 
