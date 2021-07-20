@@ -97,57 +97,133 @@ public class recursions {
     }
 
     public static int factorial(int n) {
-        if(n == 0){
+        if (n == 0) {
             return 1;
         }
 
-      return n * factorial(n-1);
+        return n * factorial(n - 1);
 
     }
 
-    public static void power(int a, int b) {
+    public static int power(int a, int b) {
+        if (b == 0) {
+            return 1;
+        }
+
+        return a * power(a, b - 1);
 
     }
 
-    // // O(logn)
-    // public static void powerBtr(int a, int b) {
+    // O(logn)
+    public static int powerBtr(int a, int b) {
+        if(b == 0){
+            return 1;
+        }
+
+        int ans = a * powerBtr(a, b / 2);
+        ans *= ans;
+
+        return b % 2 == 0 ? ans : ans * a;
+
+    }
+
+    public static void printArray(int[] arr, int idx) {
+        if (idx == arr.length) {
+            System.out.println(arr[idx]);
+        }
+
+        System.out.println(arr[idx]);
+        printArray(arr, idx + 1);
+
+    }
+
+    public static void printArrayReverse(int[] arr, int idx) {
+        if (idx == arr.length) {
+            System.out.println(arr[idx]);
+            return;
+        }
+
+        printArray(arr, idx + 1);
+        System.out.println(arr[idx]);
+
+    }
+
+    public static int maximum(int[] arr, int idx) {
+        if(idx > arr.length - 1){
+            return -(int) 1e9;
+        }
+
+        int maxValue = maximum(arr, idx + 1);
+        return Math.max(arr[idx], maxValue);
+    }
+
+    public static int minimum(int[] arr, int idx) {
+        if(idx > arr.length - 1){
+            return (int) 1e9;
+        }
+
+        int maxValue = maximum(arr, idx + 1);
+        return Math.min(arr[idx], maxValue);
+    }
+
+    public static boolean find(int[] arr, int data, int idx) {
+        if (idx > arr.length) {
+            return false;
+        }
+
+        return arr[idx] == data || find(arr, data, idx + 1);
+
+    }
+
+    public static int firstIndex(int[] arr, int data, int idx) {
+        if(idx >= arr.length){
+            return -1;
+        }
+
+        if(arr[idx] == data){
+            return idx;
+        }
+        return  firstIndex(arr, data, idx + 1);
+
+        
+    }
+
+    public static int lastIndex(int[] arr, int data, int idx) {
+        if(idx >= arr.length){
+            return -1;
+        }
+
+        int ans = lastIndex(arr, data, idx + 1);
+        if(ans != -1){
+            return ans;
+        }
+
+        return arr[idx] == data ? idx : -1;
+    }
+
+    // public static int[] allIndex(int[] arr, int data, int idx) {
 
     // }
 
-    // public static void printArray(int[] arr) {
+    // public static ArrayList<String> subsequnce(String str,int idx) {
 
     // }
 
-    // public static void printArrayReverse(int[] arr) {
-
-    // }
-
-    // public static int maximum(int[] arr) {
-
-    // }
-
-    // public static int minimum(int[] arr) {
-
-    // }
-
-    // public static boolean find(int[] arr, int data) {
-
-    // }
-
-    // public static int firstIndex(int[] arr, int data) {
-
-    // }
-
-    // public static int lastIndex(int[] arr, int data) {
+    // public static int subsequnce(String str,int idx,String asf,ArrayList<String> ans) {
 
     // }
 
     public static void main(String[] args) {
+        int arr[] = {5, 5, 5, 5, 5 ,5};
         // printIncreasing(1, 6);
         // printDecreasing(1,6);
         // printIncreasingDecreasing(1,6);
         // oddEven(1, 7);
-        System.out.println(factorial(6));
+        // System.out.println(factorial(6));
+        // System.out.println(power(3, 3));
+        // System.out.println(find(arr, 10, 0));
+        // System.out.println(maximum(arr, 0));
+        System.out.println(lastIndex(arr, 6, 0));
 
     }
 
