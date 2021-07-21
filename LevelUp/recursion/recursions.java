@@ -201,9 +201,26 @@ public class recursions {
         return arr[idx] == data ? idx : -1;
     }
 
-    // public static int[] allIndex(int[] arr, int data, int idx) {
+    public static int[] allIndex(int[] arr, int data, int idx, int count) {
+        if(idx >= arr.length){
+            return new int[count];
+        }
 
-    // }
+
+        if(arr[idx] == data)
+        count++;
+
+        int[] ans = allIndex(arr, data, idx + 1, count);
+
+        if(arr[idx] == data){
+            ans[count - 1] = idx;
+        }
+
+        return ans;
+        
+
+
+    }
 
     // public static ArrayList<String> subsequnce(String str,int idx) {
 
@@ -214,7 +231,7 @@ public class recursions {
     // }
 
     public static void main(String[] args) {
-        int arr[] = {5, 5, 5, 5, 5 ,5};
+        int arr[] = {4, 5, 3, 2, 5 ,7};
         // printIncreasing(1, 6);
         // printDecreasing(1,6);
         // printIncreasingDecreasing(1,6);
@@ -223,7 +240,12 @@ public class recursions {
         // System.out.println(power(3, 3));
         // System.out.println(find(arr, 10, 0));
         // System.out.println(maximum(arr, 0));
-        System.out.println(lastIndex(arr, 6, 0));
+        // System.out.println(lastIndex(arr, 6, 0));
+        int[] ans = allIndex(arr, 5, 0, 0);
+        for(int i = 0; i < ans.length; i++){
+            System.out.println(ans[i]);
+
+        }
 
     }
 
