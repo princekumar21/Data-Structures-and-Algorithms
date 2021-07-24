@@ -230,6 +230,23 @@ public class recursions {
 
     // }
 
-    
+    public static void main(String[] args) {
+        int arr[] = {4, 5, 3, 2, 5 ,7};
+        // printIncreasing(1, 6);
+        // printDecreasing(1,6);
+        // printIncreasingDecreasing(1,6);
+        // oddEven(1, 7);
+        // System.out.println(factorial(6));
+        // System.out.println(power(3, 3));
+        // System.out.println(find(arr, 10, 0));
+        // System.out.println(maximum(arr, 0));
+        // System.out.println(lastIndex(arr, 6, 0));
+        int[] ans = allIndex(arr, 5, 0, 0);
+        for(int i = 0; i < ans.length; i++){
+            System.out.println(ans[i]);
+
+        }
+
+    }
 
 }
