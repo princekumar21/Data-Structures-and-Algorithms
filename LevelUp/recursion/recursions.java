@@ -148,7 +148,45 @@ public class recursions {
 
     }
 
-    
+    public static int maximum(int[] arr, int idx) {
+        if(idx > arr.length - 1){
+            return -(int) 1e9;
+        }
+
+        int maxValue = maximum(arr, idx + 1);
+        return Math.max(arr[idx], maxValue);
+    }
+
+    public static int minimum(int[] arr, int idx) {
+        if(idx > arr.length - 1){
+            return (int) 1e9;
+        }
+
+        int maxValue = maximum(arr, idx + 1);
+        return Math.min(arr[idx], maxValue);
+    }
+
+    public static boolean find(int[] arr, int data, int idx) {
+        if (idx > arr.length) {
+            return false;
+        }
+
+        return arr[idx] == data || find(arr, data, idx + 1);
+
+    }
+
+    public static int firstIndex(int[] arr, int data, int idx) {
+        if(idx >= arr.length){
+            return -1;
+        }
+
+        if(arr[idx] == data){
+            return idx;
+        }
+        return  firstIndex(arr, data, idx + 1);
+
+        
+    }
 
     public static int lastIndex(int[] arr, int data, int idx) {
         if(idx >= arr.length){
