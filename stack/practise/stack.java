@@ -1,18 +1,7 @@
 package practise;
 
 public class stack {
-    private int arr[];
-    private int tos;
-    private int size;
-    private int maxSize;
-
-    public void initilize(int len){
-        this.arr = new int[len];
-        this.size = 0;
-        this.tos = -1;
-        this.maxSize = len;
-
-    }
+   
 
     stack(){
         initilize(5);
