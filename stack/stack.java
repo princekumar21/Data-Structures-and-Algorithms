@@ -75,4 +75,6 @@ public class stack {
         this.arr[this.tos--] = 0;
         this.size--;
     }
+
+    
 }

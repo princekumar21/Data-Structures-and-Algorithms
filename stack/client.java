@@ -6,6 +6,8 @@ public class client {
         st.push(30);
         st.pop();
         st.pop();
+        st.pop();
+        
       
         
 
