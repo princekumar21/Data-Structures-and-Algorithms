@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 public class recursionTree {
     public static int infiPermutation(int coins[], int tar, int count, String psf) {
         if (tar == 0) {
@@ -68,10 +69,42 @@ public class recursionTree {
 
     }
 
+    public ArrayList<ArrayList<Integer>> subset(ArrayList<Integer> A, ArrayList<Integer> Smallans,  ArrayList<ArrayList<Integer>> ans,int idx){
+        if(idx == A.size()){
+            ans.add(Smallans);
+            return ans;
+
+        }
+
+        
+        subset(A,Smallans.add(A[idx]) , idx + 1 );
+        subset(A, Smallans, idx  +1);
+        Smallans.remove(Smallans.size() - 1);
+
+        return ans;
+
+    }
+
+    public ArrayList<ArrayList<Integer>> subsets(ArrayList<Integer> A) {
+        ArrayList<ArrayList<Integer>> ans = new ArrayList<>();
+       ArrayList<Integer> Smallans = new ArrayList<>();
+
+        subset(A, Smallans, ans, 0);
+
+        return ans;
+    }
+
     public static void main(String[] args) {
-        int arr[] = { 2, 3, 5, 7 };
+        // int arr[] = { 1,2,3};
+        ArrayList<Integer> A = new ArrayList<>();
+        A.add(1);
+        A.add(2);
+        A.add(3);
+
         // infiPermutation(arr, 10, 0, "");
         // infiCombination(arr, 10, 0, 0, "");
-        singleCombination(arr, 10, 0, 0, "");
+        // singleCombination(arr, 10, 0, 0, "");
+       subsets(A);
+        
     }
 }
