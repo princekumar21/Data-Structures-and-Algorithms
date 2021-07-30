@@ -6,7 +6,20 @@ public class targetSumPair{
         arr[j] = temp;
 
     }
-   
+    public static int segregate(int[] arr, int si, int ei, int pIdx){
+        swap(arr, pIdx, ei);
+
+        int p = si - 1, itr = si; 
+        while(itr <= ei){
+            if(arr[itr] <= arr[ei]){
+                swap(arr, itr, ++p);
+            }
+            itr++;
+        }
+
+        return p;
+
+    }
     public static void quickSort(int[] arr, int si, int ei){
         if(si > ei){
             return;
