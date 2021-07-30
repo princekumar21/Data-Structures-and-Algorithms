@@ -68,6 +68,86 @@ public class recursionTree {
         return count;
 
     }
+    public static int singleCombination_subseq(int[] coins, int tar, int idx, String asf) {
+        if (tar == 0 || idx >= coins.length) {
+            if (tar == 0) {
+                System.out.println(asf);
+                return 1;
+            }
+            return 0;
+        }
+
+        int count = 0;
+        if (tar - coins[idx] >= 0)
+            count += singleCombination_subseq(coins, tar - coins[idx], idx + 1 , asf + coins[idx] + " ");
+        count += singleCombination_subseq(coins, tar, idx + 1, asf);
+
+        return count;
+    }
+
+    public static int infiCombination_subseq(int[] coins, int tar, int idx, String asf) {
+        if (tar == 0 || idx >= coins.length) {
+            if (tar == 0) {
+                System.out.println(asf);
+                return 1;
+            }
+            return 0;
+        }
+
+        int count = 0;
+        if (tar - coins[idx] >= 0)
+            count += infiCombination_subseq(coins, tar - coins[idx], idx , asf + coins[idx] + " ");
+        count += infiCombination_subseq(coins, tar, idx + 1, asf);
+
+        return count;
+    }
+
+    public static int infiPermutation_subseq(int[] coins, int tar,int idx, String asf) {
+        if (tar == 0 || idx >= coins.length) {
+            if (tar == 0) {
+                System.out.println(asf);
+                return 1;
+            }
+            return 0;
+        }
+
+        int count = 0;
+        if (tar - coins[idx] >= 0)
+            count += infiPermutation_subseq(coins, tar - coins[idx], 0 , asf + coins[idx] + " ");
+        count += infiPermutation_subseq(coins, tar, idx + 1, asf);
+
+        return count;
+    }
+
+    public static int singlePermutation_subseq(int[] coins, int tar, boolean[] vis,int idx String asf) {
+        if (tar == 0 || idx >= coins.length) {
+            if (tar == 0) {
+                System.out.println(asf);
+                return 1;
+            }
+            return 0;
+        }
+
+        int count = 0;
+        if (tar - coins[idx] >= 0){
+           
+            vis[idx] = true;
+            count += infiPermutation_subseq(coins, tar - val, 0 , asf + coins[idx] + " ");
+            vis[idx] = false;
+        }
+
+        if (!vis[idx]){
+           
+            vis[idx] = true;
+            count += infiPermutation_subseq(coins, tar, 0 , asf + coins[idx] + " ");
+            vis[idx] = false;
+        }
+            
+            
+       
+
+        return count;
+    }
 
     public ArrayList<ArrayList<Integer>> subset(ArrayList<Integer> A, ArrayList<Integer> Smallans,  ArrayList<ArrayList<Integer>> ans,int idx){
         if(idx == A.size()){
@@ -76,8 +156,8 @@ public class recursionTree {
 
         }
 
-        
-        subset(A,Smallans.add(A[idx]) , idx + 1 );
+        int val = A[idx];
+        subset(A,Smallans.add(val) , idx + 1 );
         subset(A, Smallans, idx  +1);
         Smallans.remove(Smallans.size() - 1);
 
