@@ -390,7 +390,7 @@ public class recursions {
         vis[sr][sc] = false;
     }
 
-    public int getMaximumGold(int[][] grid) {
+    public int getMaxGold(int[][] grid) {
         int n = grid.length;
         int m = grid[0].length;
         int[][] dir = { { 0, -1 }, { 0, 1 }, { -1, 0 }, { 1, 0 } };
@@ -403,6 +403,47 @@ public class recursions {
             }
         }
         return max;
+    }
+
+    //leetcode 1219
+    public static int getmaximumgold(int[][] grid, int dir[][], int sr, int sc ){
+        int n = grid.length, m = grid[0].length;
+        int maxValue = 0;
+        int val = grid[sr][sc];
+        grid[sr][sc] = -grid[sr][sc];
+        
+        for(int d = 0; d < 4; d++){
+            int r = sr + dir[d][0];
+            int c = sc + dir[d][1];
+            if(r >= 0 && c >= 0 && r < n && c < m && grid[r][c] > 0){
+               int recGold =  getmaximumgold(grid, dir, r, c);
+                if(maxValue < recGold)
+                maxValue = recGold; 
+            }
+            
+            
+            
+        }
+        grid[sr][sc] = -grid[sr][sc];
+        
+        return maxValue + val;
+        
+}
+    public int getMaximumGold(int[][] grid) {
+        int dir[][] = {{1,0}, {0,1}, {-1, 0}, {0, -1}};
+        int n = grid.length;
+        int m = grid[0].length;
+        int maxgold = 0;
+        
+        for(int i = 0; i < n; i++){
+            for(int j = 0; j < m; j++){
+                if(grid[i][j] > 0){
+                    maxgold = Math.max(maxgold, getmaximumgold(grid, dir, i, j));
+                }
+            }
+        }
+        return maxgold;
+        
     }
 
     public static void main(String[] args) {
