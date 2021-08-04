@@ -35,10 +35,5 @@ public class practiseRecurTree {
 
     }
 
-    public static void main(String[] args){
-        int arr[] = {2,3,5,7};
-        boolean vis[] = new boolean[arr.length];
-        // InfiCoins(arr, 10, "");
-        limitCoins(arr, 10, "", 0);
-    }
+   
 }
