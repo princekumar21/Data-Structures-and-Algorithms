@@ -17,7 +17,7 @@ public class practiseRecurTree {
         return count;
 
     }
-
+    //this is ncr methood
     public static int unlimitCoinsCombination(int arr[], int tar, String asf, int idx) {
         if (tar == 0) {
             System.out.println(asf);
@@ -115,11 +115,22 @@ public class practiseRecurTree {
         return count;
     }
 
+    public static void singleCombination_subset(int arr[], int idx, String ans){
+        if(idx == arr.length){
+            System.out.println(ans);
+            return;
+        }
+
+        singleCombination_subset(arr, idx + 1, ans);
+        singleCombination_subset(arr, idx + 1, ans + arr[idx]);
+    }
+
     public static void main(String[] args) {
         int arr[] = { 2, 3, 5, 7 };
         boolean vis[] = new boolean[arr.length];
         // InfiCoins(arr, 10, "");
         // combinationSum(arr, 10);
-        singlePermutation(arr, 10, "");
+        // singlePermutation(arr, 10, "");
+        singleCombination_subset(arr, 0, "");
     }
 }
