@@ -243,7 +243,23 @@ public class practiseRecurTree {
 
     }
 
-    2D Queen set
+    // 2D Queen set -----------------------------------------------------------------------------
+
+    public static int queenCombination2D(int box[][], int tnq, int bno, String asf){
+        if(tnq == 0){
+            System.out.println(asf);
+            return 1;
+        }
+        int n = box.length, m = box[0].length;
+        int count = 0;
+        for(int b = bno; b < n * m ; b++){
+
+            int r = b / m;
+            int c = b % m;
+            count += queenCombination2D(box, tnq - 1, b + 1, asf + "(" + r+","+c+") ");
+        }
+        return count;
+    }
 
     public static void main(String[] args) {
         int arr[] = { 2, 3, 5, 7 };
@@ -259,6 +275,8 @@ public class practiseRecurTree {
         // queenPermutation1D(3, 2, vis, 1, "");
         // queenCombination1D_subsequence(6, 1, 4, 1, "");
         // queenPermutation1D(6, 4, vis, 1, "");
-        queenPermutation1D_subsequence(6, 4, 1, vis, 1, "");
+        // queenPermutation1D_subsequence(6, 4, 1, vis, 1, "");
+        int box[][] = new int[4][4];
+        queenCombination2D(box, 4, 1, "");
     }
 }
