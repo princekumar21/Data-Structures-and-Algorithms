@@ -1,7 +1,7 @@
 public class NqueenSet {
 
     public static boolean isSafeToPlaceQueen(boolean box[][], int sr, int sc) {
-        int dir[][] = { { -1, 0 }, { 0, -1 }, { -1, -1 }, { -1, 1 } };
+        int dir[][] = { { -1, 0 }, { 0, -1 }, { -1, -1 }, { -1, 1 }, { 0, 1 }, { 1, 0 }, { 1, -1 }, { 1, 1 } };
         int n = box.length, m = box[0].length;
         for (int d = 0; d < dir.length; d++) {
             for (int rad = 1; rad <= n; rad++) {
@@ -21,7 +21,7 @@ public class NqueenSet {
 
     }
 
-    public static int Nqueen_01(boolean box[][], int tnq, int bno, String asf) {
+    public static int NqueenComb_01(boolean box[][], int tnq, int bno, String asf) {
         int n = box.length, m = box[0].length;
         if (tnq == 0) {
             System.out.println(asf);
@@ -34,7 +34,30 @@ public class NqueenSet {
             int c = b % m;
             if (isSafeToPlaceQueen(box, r, c)) {
                 box[r][c] = true;
-                count += Nqueen_01(box, tnq - 1, b + 1, asf + "(" + r + "," + c + ") ");
+                count += NqueenComb_01(box, tnq - 1, b + 1, asf + "(" + r + "," + c + ") ");
+                box[r][c] = false;
+
+            }
+        }
+
+        return count;
+
+    }
+
+    public static int NqueenPer_01(boolean box[][], int tnq, String asf) {
+        int n = box.length, m = box[0].length;
+        if (tnq == 0) {
+            System.out.println(asf);
+            return 1;
+        }
+
+        int count = 0;
+        for (int b = 0; b < m * n; b++) {
+            int r = b / m;
+            int c = b % m;
+            if (isSafeToPlaceQueen(box, r, c) && !box[r][c]) {
+                box[r][c] = true;
+                count += NqueenPer_01(box, tnq - 1, asf + "(" + r + "," + c + ") ");
                 box[r][c] = false;
 
             }
@@ -46,6 +69,7 @@ public class NqueenSet {
 
     public static void main(String args[]) {
         boolean box[][] = new boolean[4][4];
-       System.out.println( Nqueen_01(box, 4, 0, ""));
+        // System.out.println( NqueenComb_01(box, 4, 0, ""));
+        System.out.println(NqueenPer_01(box, 4, ""));
     }
 }
