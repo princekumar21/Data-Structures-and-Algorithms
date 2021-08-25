@@ -116,36 +116,50 @@ public class binartTreePrac {
 
     }
 
-    public static ArrayList<Node> nodeToRootPath(Node node, int data){
+    public static ArrayList<Node> nodeToRootPath(Node node, int data) {
         ArrayList<Node> ans = new ArrayList<>();
         findNodeToRootPath(node, data, ans);
         return ans;
 
     }
 
-    public static ArrayList<Node> nodeToRootPath2(Node node, int data){
-        if(node == null){
+    public static ArrayList<Node> nodeToRootPath2(Node node, int data) {
+        if (node == null) {
             return null;
         }
-         if(node.data == data){
-             ArrayList<Node> base = new ArrayList<>();
-             base.add(node);
-             return base; 
-         }
+        if (node.data == data) {
+            ArrayList<Node> base = new ArrayList<>();
+            base.add(node);
+            return base;
+        }
 
-        ArrayList<Node> left =  nodeToRootPath2(node.left, data);
-        if(left != null){
+        ArrayList<Node> left = nodeToRootPath2(node.left, data);
+        if (left != null) {
             left.add(node);
             return left;
         }
         ArrayList<Node> right = nodeToRootPath2(node.right, data);
-        if(right != null){
+        if (right != null) {
             right.add(node);
             return right;
 
         }
 
         return null;
+    }
+
+    public static void KLevelDown(Node root, int k, ArrayList<Node> ans) {
+        if (root == null || k < 0) {
+            return;
+        }
+        if (k == 0) {
+            ans.add(root);
+            return;
+        }
+
+        KLevelDown(root.left, k - 1, ans);
+        KLevelDown(root.right, k - 1, ans);
+
     }
 
 }
