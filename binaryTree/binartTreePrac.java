@@ -116,8 +116,11 @@ public class binartTreePrac {
 
     }
 
-    public static void nodeToRootPath(Node node, int data){
-        ArrayList<>
+    public static ArrayList<Integer> nodeToRootPath(Node node, int data){
+        ArrayList<Integer> ans = new ArrayList<>();
+        findNodeToRootPath(node, data, ans);
+        return ans;
+
     }
 
 }
