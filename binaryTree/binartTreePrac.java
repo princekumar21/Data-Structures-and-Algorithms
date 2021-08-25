@@ -96,7 +96,7 @@ public class binartTreePrac {
 
     }
 
-    public static boolean findNodeToRootPath(Node node, int data, ArrayList<Integer> ans) {
+    public static boolean findNodeToRootPath(Node node, int data, ArrayList<Node> ans) {
 
         if (node == null) {
             return false;
@@ -104,23 +104,48 @@ public class binartTreePrac {
         }
 
         if (node.data == data) {
-            ans.add(node.data);
+            ans.add(node);
             return true;
         }
 
         boolean res = findNodeToRootPath(node.left, data, ans) || findNodeToRootPath(node.right, data, ans);
         if (res) {
-            ans.add(node.data);
+            ans.add(node);
         }
         return res;
 
     }
 
-    public static ArrayList<Integer> nodeToRootPath(Node node, int data){
-        ArrayList<Integer> ans = new ArrayList<>();
+    public static ArrayList<Node> nodeToRootPath(Node node, int data){
+        ArrayList<Node> ans = new ArrayList<>();
         findNodeToRootPath(node, data, ans);
         return ans;
 
+    }
+
+    public static ArrayList<Node> nodeToRootPath2(Node node, int data){
+        if(node == null){
+            return null;
+        }
+         if(node.data == data){
+             ArrayList<Node> base = new ArrayList<>();
+             base.add(node);
+             return base; 
+         }
+
+        ArrayList<Node> left =  nodeToRootPath2(node.left, data);
+        if(left != null){
+            left.add(node);
+            return left;
+        }
+        ArrayList<Node> right = nodeToRootPath2(node.right, data);
+        if(right != null){
+            right.add(node);
+            return right;
+
+        }
+
+        return null;
     }
 
 }
