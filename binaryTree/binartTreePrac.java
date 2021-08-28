@@ -175,6 +175,8 @@ public class binartTreePrac {
         KLevelDown(root.right, k - 1, ans);
 
     }
+    
+    
 
     public static void kNodeAway(Node root, int k, int data){
         ArrayList<Node> ans = nodeToRootPath2(root, data);
