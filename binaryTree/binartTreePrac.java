@@ -162,4 +162,23 @@ public class binartTreePrac {
 
     }
 
+    public static void KLevelDown(Node root, int k, Node block,  ArrayList<Node> ans) {
+        if (root == null || k < 0 || block == root) {
+            return;
+        }
+        if (k == 0) {
+            ans.add(root);
+            return;
+        }
+
+        KLevelDown(root.left, k - 1, ans);
+        KLevelDown(root.right, k - 1, ans);
+
+    }
+
+    public static void kNodeAway(Node root, int k, int data){
+        ArrayList<Node> ans = nodeToRootPath2(root, data);
+         
+    }
+
 }
