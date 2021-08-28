@@ -47,12 +47,12 @@ public class bst {
             return new isBSTPair();
         }
 
-        isBSTPair left = isBST(root.left);
+        isBSTPair left = isBST_02(root.left);
         if (!left.isBst) {
             return left;
         }
 
-        isBSTPair right = isBST(root.right);
+        isBSTPair right = isBST_02(root.right);
         if (!right.isBst) {
             return right;
         }
