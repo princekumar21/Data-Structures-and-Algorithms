@@ -171,8 +171,8 @@ public class binartTreePrac {
             return;
         }
 
-        KLevelDown(root.left, k - 1, ans);
-        KLevelDown(root.right, k - 1, ans);
+        KLevelDown(root.left, k - 1, block,  ans);
+        KLevelDown(root.right, k - 1, block, ans);
 
     }
 
@@ -190,5 +190,35 @@ public class binartTreePrac {
         }
 
     }
+
+    public static int kNodeAway2(Node root, int k, int data) {
+        if (root == null) {
+            return -1;
+        }
+
+        ArrayList<Node> ans = new ArrayList<>();
+
+        if (root.data == data) {
+            KLevelDown(root, k, null, ans);
+            return 1;
+        }
+
+        int left = kNodeAway2(root.left, k, data);
+        if(left != -1){
+            KLevelDown(root, k - left, root.left, ans);
+            return 1  + left;
+
+        }
+        int right = kNodeAway2(root.right, k, data);
+        if(right != -1){
+            KLevelDown(root, k - right, root.right,  ans);
+            return 1 + right;
+        }
+
+        return -1;
+
+    }
+
+    
 
 }
