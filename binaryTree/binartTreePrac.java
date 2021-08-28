@@ -180,6 +180,16 @@ public class binartTreePrac {
 
     public static void kNodeAway(Node root, int k, int data){
         ArrayList<Node> ans = nodeToRootPath2(root, data);
+
+        ArrayList<Node> base = new ArrayList<>();
+
+        for(int i = 0; i < ans.size(); i++){
+
+            Node block = null;
+
+            KLevelDown(ans.get(i), k - i, block, base);
+            block = ans.get(i);
+        }
          
     }
 
