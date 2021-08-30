@@ -171,7 +171,7 @@ public class binartTreePrac {
             return;
         }
 
-        KLevelDown(root.left, k - 1, block,  ans);
+        KLevelDown(root.left, k - 1, block, ans);
         KLevelDown(root.right, k - 1, block, ans);
 
     }
@@ -204,14 +204,14 @@ public class binartTreePrac {
         }
 
         int left = kNodeAway2(root.left, k, data);
-        if(left != -1){
+        if (left != -1) {
             KLevelDown(root, k - left, root.left, ans);
-            return 1  + left;
+            return 1 + left;
 
         }
         int right = kNodeAway2(root.right, k, data);
-        if(right != -1){
-            KLevelDown(root, k - right, root.right,  ans);
+        if (right != -1) {
+            KLevelDown(root, k - right, root.right, ans);
             return 1 + right;
         }
 
@@ -293,6 +293,26 @@ public class binartTreePrac {
 
     }
 
+    public static class tiltPair {
+        int tiltSf = 0;
+        int sum = 0;
+    }
 
+    public static tiltPair tilt(Node node) {
+        if (node == null) {
+            return new tiltPair();
+        }
+
+        tiltPair left = tilt(node.left);
+        tiltPair right = tilt(node.right);
+
+        tiltPair self = new tiltPair();
+        int tiltsum = Math.abs(left.sum - right.sum);
+        self.tiltSf = tiltsum + left.tiltSf + right.tiltSf;
+        self.sum = left.sum + right.sum + node.data;
+
+        return self;
+
+    }
 
 }
