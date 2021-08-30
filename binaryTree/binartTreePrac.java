@@ -341,4 +341,17 @@ public class binartTreePrac {
 
     }
 
+    public static class lBSTPair {
+        boolean isBST = true;
+        int max = -(int) 1e9;
+        int min = (int) 1e9;
+
+        int size = 0;
+        Node node = null;
+    }
+
+    public static void largestBSTInBt(Node node) {
+
+    }
+
 }
