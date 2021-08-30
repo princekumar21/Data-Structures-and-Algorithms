@@ -219,6 +219,80 @@ public class binartTreePrac {
 
     }
 
+    public static int height_02(Node node) {
+        if (node == null) {
+            return -1;
+        }
+
+        int leftHei = height_02(node.left);
+        int rightHei = height_02(node.right);
+
+        return Math.max(leftHei, rightHei) + 1;
+    }
+
+    // Time complexity O(n^2)
+    // space complexity O(n)
+    public static boolean isBalance(Node node) {
+        if (node == null) {
+            return true;
+        }
+
+        boolean leftBalance = isBalance(node.left);
+        if (!leftBalance)
+            return false;
+        boolean rightBalance = isBalance(node.right);
+        if (!rightBalance)
+            return false;
+
+        int leftheight = height_02(node.left);
+        int rightheight = height_02(node.right);
+        int diff = Math.abs(leftheight - rightheight);
+
+        if (diff > 1) {
+            return false;
+        }
+
+        return true;
+
+    }
+
+    public static class isBalPair {
+        int height = -1;
+        boolean isBal = true;
+    }
+
+    public static isBalPair isBalance_02(Node node) {
+
+        if (node == null) {
+            return new isBalPair();
+        }
+
+        isBalPair left = isBalance_02(node.left);
+        if (!left.isBal) {
+            return left;
+        }
+
+        isBalPair right = isBalance_02(node.right);
+        if (!right.isBal) {
+            return right;
+        }
+
+        isBalPair self = new isBalPair();
+
+        int leftHeight = height_02(node.left);
+        int rightHeight = height_02(node.right);
+
+        if (Math.abs(leftHeight - rightHeight) > 1) {
+            self.isBal = false;
+            self.height = Math.max(leftHeight, rightHeight);
+            return self;
+        }
+
+        self.height = Math.max(leftHeight, rightHeight);
+        return self;
+
+    }
+
 
 
 }

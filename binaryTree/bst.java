@@ -35,7 +35,7 @@ public class bst {
         return true;
 
     }
-    
+
     public static class isBSTPair {
         boolean isBst = true;
         long maxEle = -(long) 1e18;
@@ -68,4 +68,6 @@ public class bst {
         return self;
 
     }
+
+    
 }
