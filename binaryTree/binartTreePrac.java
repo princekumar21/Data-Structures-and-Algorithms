@@ -341,17 +341,44 @@ public class binartTreePrac {
 
     }
 
-    public static class lBSTPair {
+    public static class lBSTPair{
         boolean isBST = true;
-        int max = -(int) 1e9;
-        int min = (int) 1e9;
+        int max = -(int)1e9;
+        int min  = (int)1e9;
 
         int size = 0;
         Node node = null;
     }
 
-    public static void largestBSTInBt(Node node) {
+    public static lBSTPair largestBSTInBt(Node node){
+        if(node == null){
+            return new lBSTPair();
+        }
 
+        lBSTPair left =  largestBSTInBt(node.left);
+        
+
+        lBSTPair right = largestBSTInBt(node.right);
+       
+
+        lBSTPair self = new lBSTPair();
+
+        self.isBST = false;
+        if(left.isBST && right.isBST && left.max < node.data && right.min > node.data){
+            self.isBST = true;
+            self.max = Math.max(right.max, node.data);
+            self.min = Math.min(left.min, node.data);
+            self.size = left.size + right.size + 1;
+            self.node = node; 
+
+        }else{
+            self.max = Math.max(right.max, left.max);
+            self.min = Math.min(left.min, right.min);
+            self.size = Math.max(left.size, right.size);
+            self.node = right.node == null ? left.node : right.node;
+        }
+
+        return self;
     }
 
 }
