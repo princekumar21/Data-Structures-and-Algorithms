@@ -315,4 +315,30 @@ public class binartTreePrac {
 
     }
 
+    public int height3(Node node) {
+        if (node == null) {
+            return -1;
+        }
+        int left = height3(node.left);
+        int right = height3(node.right);
+
+        return Math.max(left, right) + 1;
+
+    }
+
+    public int diameterOfBinaryTree(Node root) {
+        if (root == null) {
+            return 0;
+        }
+
+        int leftHeight = diameterOfBinaryTree(root.left);
+        int rightHeight = diameterOfBinaryTree(root.right);
+
+        int left = height3(root.left);
+        int right = height3(root.right);
+
+        return Math.max(left + right + 2, Math.max(rightHeight, leftHeight));
+
+    }
+
 }
